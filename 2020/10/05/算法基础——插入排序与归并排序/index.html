@@ -28,7 +28,7 @@
 <meta property="og:description" content="序这篇文章主要是依照《算法导论》这本书来写的，期间边看书边看MIT的公开课 ，课是本书的作者之一讲的，这篇文章我会着重讲讲我听不明白的一些问题，并一一解决，文章篇幅较长，希望能耐心看完哦。 简单的介绍回忆起第一次接触排序问题，是在大一的C语言课上，老师要我们通过两个for循环把一个数组中的元素从小到大排序，看着网上的技术博客勉勉强强写出来后，才知道这叫做冒泡排序，再后来，学了把两个有序的数组合并成">
 <meta property="og:locale">
 <meta property="article:published_time" content="2020-10-05T12:26:27.000Z">
-<meta property="article:modified_time" content="2020-10-07T08:11:18.187Z">
+<meta property="article:modified_time" content="2020-10-08T10:47:25.511Z">
 <meta property="article:author" content="ChineseSheep">
 <meta name="twitter:card" content="summary">
 
@@ -180,7 +180,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-10-07 16:11:18" itemprop="dateModified" datetime="2020-10-07T16:11:18+08:00">2020-10-07</time>
+                <time title="Modified: 2020-10-08 18:47:25" itemprop="dateModified" datetime="2020-10-08T18:47:25+08:00">2020-10-08</time>
               </span>
 
           
@@ -203,7 +203,7 @@
 <p>说了这么多，相信大家都明白了性能的含义和作用，那么让我们来看看第一个算法——插入排序吧！</p>
 <h1 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h1><h2 id="插入排序的伪代码"><a href="#插入排序的伪代码" class="headerlink" title="插入排序的伪代码"></a>插入排序的伪代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">for j &#x3D; 2 to A.length   &#x2F;&#x2F;从第二个数遍历到数组末尾，j代表要比较的数</span><br><span class="line">	key &#x3D; A[j]    &#x2F;&#x2F;记录A[j]的初始值</span><br><span class="line">	i &#x3D; j - 1     &#x2F;&#x2F;i代表j的后一个数</span><br><span class="line">	while i &gt; 0 and A[i] &gt; key </span><br><span class="line">		A[i + 1] &#x3D; A[i]</span><br><span class="line">		i &#x3D; i - 1</span><br><span class="line">	A[i + 1] &#x3D; key     &#x2F;&#x2F;把A[j]的初始值赋给最后i前面的一个数</span><br></pre></td></tr></table></figure>
 
-<p>先讲一下伪代码，主要有两个作用，<strong>用最简的语言表示算法，让无论学过什么语言的人都能最快看懂</strong>。最简不用多说，没分号，没大括号，循环用缩进表示，颇有python内味，我在原书代码的基础上加了一些注释，相信要看懂更加容易了。</p>
+<p>先讲一下伪代码，主要有两个作用，<strong>用最简的语言表示算法，让无论学过什么语言的人都能最快看懂</strong>。最简不用多说，没分号，没大括号，循环用缩进表示，颇有python内味，我在原书代码的基础上加了一些注释，相信要看懂更加容易了。如果实在看不懂伪代码，可以看这篇<a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/insertion-sort.html">博客</a>，里面用各种语言写了插入排序。</p>
 <p>我曾经做了一个作死的尝试，写了篇名叫<em>《不用代码讲插入排序》</em>的文章，后来写的冗长不说，意思也表达不清，索性作罢，用伪代码讲算法，虽然抽象，但是精确，简洁。</p>
 <p>让我们用一串数组，来描述这个代码的执行过程</p>
 <blockquote>
@@ -217,12 +217,17 @@
 <p>1, 2, 3, 4, 5      第二步</p>
 </blockquote>
 <p>我们可以看到，其实，伪代码主要实现两种功能</p>
-<h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><p>在上面的例子中，要排序4这个数，前提是4前面的数必须有序，因为排序是从2个数到3个数到4个数……排序3个数的基础是前面的2个数已经排好了，所以不要用类似{2，1，3，5，4}这样的不标准数组来测试代码哦</p>
+<h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><p>在上面的例子中，要排序4这个数，前提是4前面的数必须有序，因为排序是从2个数到3个数到4个数……排序3个数的基础是前面的2个数已经排好了，所以不要用类似{2，1，3，5，4}这样的不标准数组来测试代码哦，同时伪代码的数组并非从0开始，而是从1开始，A[5]的元素有A[1,2,3,4,5]而不是A[0,1,2,3,4]。</p>
 <h3 id="移动"><a href="#移动" class="headerlink" title="移动"></a>移动</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="built_in">i</span> &gt; <span class="number">0</span> and A[<span class="built_in">i</span>] &gt; key</span><br><span class="line">	A[<span class="built_in">i</span> + <span class="number">1</span>] = A[<span class="built_in">i</span>]</span><br><span class="line">	<span class="built_in">i</span> = <span class="built_in">i</span> - <span class="number">1</span></span><br></pre></td></tr></table></figure>
 
 <p>先看while中后面的那一部分，A[i]  &gt;  key，配合后面的i = i - 1，从j的后面一个数开始，从后往前跟A[ j ]比大小</p>
-<p>再看i &gt; 0是为了确定</p>
-<h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3>
+<p>i &gt; 0是为了确定数组是否到头的，如果i自减到0，while循环就会停止</p>
+<p>看前面的文章可以知道，key就是要插入的那个值，假设数组中的第五个数也就是A[5]的值是key，A[4]，A[3]，都比key大，A[2]比key小，如数组**{1,2,4,5,3}<strong>那么请拿出一张草稿纸，试着执行一下循环里面的代码。执行完循环之后，会得到这样一个数组</strong>{1,2,2,4,5}**，i最后自减完的值是2，如果细心的话，会发现数组中元素的位置已经移动了，比3大的4和5，已经从原来的位置往后移动了一位，这时，只需要把第3个位置的2换成3，数组的排序就完成了</p>
+<h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><p>实现插入的代码只有一行</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A[i + <span class="number">1</span>] = <span class="type">key</span> </span><br></pre></td></tr></table></figure>
+
+<p>再用**{1,2,4,5,3}**举例子</p>
+
     </div>
 
     
