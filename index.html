@@ -176,7 +176,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-10-08 23:23:11" itemprop="dateModified" datetime="2020-10-08T23:23:11+08:00">2020-10-08</time>
+                <time title="Modified: 2020-10-09 23:10:08" itemprop="dateModified" datetime="2020-10-09T23:10:08+08:00">2020-10-09</time>
               </span>
 
           
@@ -218,11 +218,11 @@
 
 <p>先看while中后面的那一部分，A[i]  &gt;  key，配合后面的i = i - 1，从j的后面一个数开始，从后往前跟A[ j ]比大小</p>
 <p>i &gt; 0是为了确定数组是否到头的，如果i自减到0，while循环就会停止</p>
-<p>看前面的文章可以知道，key就是要插入的那个值，假设数组中的第五个数也就是A[5]的值是key，A[4]，A[3]，都比key大，A[2]比key小，如数组**{1,2,4,5,3}<strong>那么请拿出一张草稿纸，试着执行一下循环里面的代码。执行完循环之后，会得到这样一个数组</strong>{1,2,2,4,5}**，i最后自减完的值是2，如果细心的话，会发现数组中元素的位置已经移动了，比3大的4和5，已经从原来的位置往后移动了一位，这时，只需要把第3个位置的2换成3，数组的排序就完成了</p>
+<p>看前面的文章可以知道，key就是要插入的那个值，假设数组中的第五个数也就是A[5]的值是key，A[4]，A[3]，都比key大，A[2]比key小，如数组{1,2,4,5,3}那么请拿出一张草稿纸，试着执行一下循环里面的代码。执行完循环之后，会得到这样一个数组{1,2,2,4,5}，i最后自减完的值是2，如果细心的话，会发现数组中元素的位置已经移动了，比3大的4和5，已经从原来的位置往后移动了一位，这时，只需要把第3个位置的2换成3，数组的排序就完成了</p>
 <h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><p>实现插入的代码只有一行</p>
 <figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A[i + <span class="number">1</span>] = <span class="type">key</span> </span><br></pre></td></tr></table></figure>
 
-<p>再用**{1,2,4,5,3}**举例子</p>
+<p>再用{1,2,4,5,3}举例子</p>
 
       
     </div>
