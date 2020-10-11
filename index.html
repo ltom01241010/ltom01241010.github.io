@@ -74,11 +74,7 @@
   </style>
 </noscript>
 
-<!-- hexo injector head_end start -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --></head>
+</head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -182,7 +178,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-10-11 23:18:52" itemprop="dateModified" datetime="2020-10-11T23:18:52+08:00">2020-10-11</time>
+                <time title="Modified: 2020-10-12 07:08:56" itemprop="dateModified" datetime="2020-10-12T07:08:56+08:00">2020-10-12</time>
               </span>
 
           
@@ -233,7 +229,7 @@
 <p>根据前面，算法要考虑最坏的情况，所以，我们默认排序的数组都是像{5,4,3,2,1}这种完全相反的数组，我们就可以得到n元素数组排序的最长时间。</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">for</span> j = <span class="number">2</span> to A.length              //a<span class="number">1</span>		n</span><br><span class="line">	<span class="attribute">key</span> = A[j]    				   //a<span class="number">2</span>		n - <span class="number">1</span></span><br><span class="line">	<span class="attribute">i</span> = j - <span class="number">1</span>     				   //a<span class="number">3</span>		n - <span class="number">1</span></span><br><span class="line">	<span class="attribute">while</span> i &gt; <span class="number">0</span> and A[i] &gt; key     //a<span class="number">4</span>		<span class="number">2</span> + …… + n  </span><br><span class="line">		<span class="attribute">A</span>[i + <span class="number">1</span>] = A[i]            //a<span class="number">5</span>		<span class="number">1</span> + …… + n - <span class="number">1</span> </span><br><span class="line">		<span class="attribute">i</span> = i - <span class="number">1</span>                  //a<span class="number">6</span>		<span class="number">1</span> + …… + n - <span class="number">1</span></span><br><span class="line">	<span class="attribute">A</span>[i + <span class="number">1</span>] = key                 //a<span class="number">7</span>		n - <span class="number">1</span></span><br></pre></td></tr></table></figure>
 <p>后面的数代表执行次数，下面我来逐行讲解<br><strong>1</strong> 从2到n的遍历，看似应该执行n - 1次，但是循环的条件句最后还要判断一下，所以加一，如果这里不明白，可以看第4行代码的讲解<br><strong>2</strong> 每对应一个j值，都执行一次，共有n - 1个j值，执行你n - 1次<br><strong>3</strong> 与第2行一样<br><strong>4</strong> 由于是最差的情况，所以i每次都会自减到0，当i自减到0后，虽然循环内的代码不用执行，但是，是不是大于0还得比较一下，所以第4行代码是j为几就执行几次<br><strong>5</strong> 相比于第4行代码，每个j值都少一次i的值的判断，所以每轮执行次数都为j - 1，所以为从1到n - 1的和<br><strong>6</strong> 与第5行相同<br><strong>7</strong> 与第2行相同</p>
-<p>$ a_{1} $</p>
+<p><img src="/images/i.jpg" alt="try"></p>
 
       
     </div>
@@ -476,6 +472,7 @@
   if (typeof MathJax === 'undefined') {
     window.MathJax = {
       loader: {
+          load: ['[tex]/mhchem'],
         source: {
           '[tex]/amsCd': '[tex]/amscd',
           '[tex]/AMScd': '[tex]/amscd'
@@ -483,6 +480,7 @@
       },
       tex: {
         inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
         tags: 'ams'
       },
       options: {
