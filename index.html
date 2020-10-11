@@ -74,7 +74,9 @@
   </style>
 </noscript>
 
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/custom_css_source.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -178,7 +180,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-10-10 14:34:34" itemprop="dateModified" datetime="2020-10-10T14:34:34+08:00">2020-10-10</time>
+                <time title="Modified: 2020-10-11 08:25:58" itemprop="dateModified" datetime="2020-10-11T08:25:58+08:00">2020-10-11</time>
               </span>
 
           
@@ -200,7 +202,6 @@
 <p>让我们通过一个都遇到过的例子来再说明一下吧。学习C语言时，都学多scanf函数吧，当我们兴奋的把写好的程序给同学运行时，同学往往不知道要输入啥，这时，我们需要用printf(“请输入一个XX数:”)，来提示同学要输入什么内容，加上这一段代码，程序就变得<em>“冗余”</em>了一些，多运行了一段代码，稍微慢了一些，但是，加强了我们代码的可读性。</p>
 <p>说了这么多，相信大家都明白了性能的含义和作用，那么让我们来看看第一个算法——插入排序吧！</p>
 <h1 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h1><h2 id="插入排序的伪代码"><a href="#插入排序的伪代码" class="headerlink" title="插入排序的伪代码"></a>插入排序的伪代码</h2><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> j = <span class="number">2</span> to A.length   <span class="comment">//从第二个数遍历到数组末尾，j代表要比较的数</span></span><br><span class="line">	key = A[j]    <span class="comment">//记录A[j]的初始值</span></span><br><span class="line">	i = j - <span class="number">1</span>     <span class="comment">//i代表j的后一个数</span></span><br><span class="line">	<span class="keyword">while</span> i &gt; <span class="number">0</span> <span class="keyword">and</span> A[i] &gt; key </span><br><span class="line">		A[i + <span class="number">1</span>] = A[i]</span><br><span class="line">		i = i - <span class="number">1</span></span><br><span class="line">	A[i + <span class="number">1</span>] = key     <span class="comment">//把A[j]的初始值赋给最后i前面的一个数</span></span><br></pre></td></tr></table></figure>
-
 <p>先讲一下伪代码，主要有两个作用，<strong>用最简的语言表示算法，让无论学过什么语言的人都能最快看懂</strong>。最简不用多说，没分号，没大括号，循环用缩进表示，颇有python内味，我在原书代码的基础上加了一些注释，相信要看懂更加容易了。如果实在看不懂伪代码，可以看这篇<a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/insertion-sort.html">博客</a>，里面用各种语言写了插入排序。</p>
 <p>我曾经做了一个作死的尝试，写了篇名叫<em>《不用代码讲插入排序》</em>的文章，后来写的冗长不说，意思也表达不清，索性作罢，用伪代码讲算法，虽然抽象，但是精确，简洁。</p>
 <p>让我们用一串数组，来描述这个代码的执行过程</p>
@@ -210,26 +211,21 @@
 <p>要把这个数组变成{1, 2, 3, 4, 5}会经历什么过程呢？</p>
 <blockquote>
 <p>1, 2, 3, 5, 5      第一步</p>
-</blockquote>
-<blockquote>
 <p>1, 2, 3, 4, 5      第二步</p>
 </blockquote>
 <p>我们可以看到，其实，伪代码主要实现两种功能</p>
 <h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><p>在上面的例子中，要排序4这个数，前提是4前面的数必须有序，因为排序是从2个数到3个数到4个数……排序3个数的基础是前面的2个数已经排好了，所以不要用类似{2，1，3，5，4}这样的不标准数组来测试代码哦，同时伪代码的数组并非从0开始，而是从1开始，A[5]的元素有A[1,2,3,4,5]而不是A[0,1,2,3,4]。</p>
 <h3 id="移动"><a href="#移动" class="headerlink" title="移动"></a>移动</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="built_in">i</span> &gt; <span class="number">0</span> and A[<span class="built_in">i</span>] &gt; key</span><br><span class="line">	A[<span class="built_in">i</span> + <span class="number">1</span>] = A[<span class="built_in">i</span>]</span><br><span class="line">	<span class="built_in">i</span> = <span class="built_in">i</span> - <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
 <p>先看while中后面的那一部分，A[i]  &gt;  key，配合后面的i = i - 1，从j的后面一个数开始，从后往前跟A[j]比大小</p>
 <p>i &gt; 0是为了确定数组是否到头的，如果i自减到0，while循环就会停止</p>
-<p>看前面的文章可以知道，key就是要插入的那个值，假设数组中的第五个数也就是A[5]的值是key，A[4]，A[3]，都比key大，A[2]比key小，如数组{1,2,4,5,3}，那么请拿出一张草稿纸，试着执行一下循环里面的代码。执行完循环之后，会得到这样一个数组{1,2,2,4,5}，i最后自减完的值是2，如果细心的话，会发现数组中元素的位置已经移动了，比3大的4和5，已经从原来的位置往后移动了一位，这时，只需要把第3个位置的2换成3，数组的排序就完成了</p>
+<p>看前面的文章可以知道，key就是要插入的那个值，假设数组中的第五个数也就是A[5]的值是key，A[4]，A[3]，都比key大，A[2]比key小，如数组{1,2,4,5,3}，那么请拿出一张草稿纸，试着执行一下循环里面的代码。执行完循环之后，会得到这样一个数组{1,2,2,4,5}，i最后自减完的值是2，如果细心的话，会发现数组中元素的位置已经移动了，比3大的4和5，已经从原来的位置往后移动了一位，这时，只需要把第3个位置的2换成3，数组的排序就完成了。</p>
 <h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><p>实现插入的代码只有一行</p>
 <figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A[i + <span class="number">1</span>] = <span class="type">key</span> </span><br></pre></td></tr></table></figure>
-
 <p>再用{1,2,4,5,3}举例子,我们进行完移动的操作后，得到的成果有{1，2，2，4，5}以及一个i值，i = 2</p>
-<p>这里的i为插入操作进行引导，执行完A[i] &gt; key和i的自减后，我们可以知道，i前面的值都比key值小，A[i] = A[i + 1]，只需要把A[i + 1]替换为原来的A[j]值，即key，排序就完成了，看似是插入，如果执行过一遍程序后，就知道其实应该叫做替换</p>
-<h2 id="代码运算时间分析"><a href="#代码运算时间分析" class="headerlink" title="代码运算时间分析"></a>代码运算时间分析</h2><h3 id="该从哪个角度分析？"><a href="#该从哪个角度分析？" class="headerlink" title="该从哪个角度分析？"></a>该从哪个角度分析？</h3><p>运算时间受到的影响太多了，同样的代码，在超算和个人电脑上，运算时间肯定不同，个人电脑中，处理器型号，内存大小，也会导致执行的速度也不一样，但是，现在，我们仅从代码写法的角度来讨论运算时间的问题，而且是在最差的情况下的时间</p>
-<h3 id="为什么是最差的情况"><a href="#为什么是最差的情况" class="headerlink" title="为什么是最差的情况"></a>为什么是最差的情况</h3><p>任何一个程序需要尽可能考虑差的情况，比如，一个排序数组的程序，在别人运行的时候，事先说明，<em>本程序排序完全颠倒的数组会很慢(类似{5，4，3，2，1})，其他时候都挺快的</em>，我觉得挺可笑的。一个程序设计的初衷就是要满足客户的各种合理需求的。记得在高考填志愿的时候，我不止一次抱怨填报志愿的网站做的差，好歹是全国人都会用的系统，为什么这么的“简朴”，后来经历过<a target="_blank" rel="noopener" href="http://cet.neea.edu.cn/">英语六级报名</a>，<a target="_blank" rel="noopener" href="https://jlpt.neea.edu.cn/">日语n2报名</a>后，发现其实做的网站都这样。后来仔细一想，其实全国的电脑中很大一部分是事业单位，高中机房中的老式电脑，不仅装的是XP系统，还装有360系，毒霸系的流氓软件，要是网页做的跟<a href="www.apple.cn">苹果官网</a>一样，一些电脑真不一定打得开。这些官方报名网站，设计时就考虑了兼容性的情况，同样，我们的代码也要考虑最差的情况</p>
+<p>这里的i为插入操作进行引导，执行完A[i] &gt; key和i的自减后，我们可以知道，i前面的值都比key值小，A[i] = A[i + 1]，只需要把A[i + 1]替换为原来的A[j]值，即key，排序就完成了，看似是插入，如果执行过一遍程序后，就知道其实应该叫做替换。</p>
+<h2 id="代码运算时间分析"><a href="#代码运算时间分析" class="headerlink" title="代码运算时间分析"></a>代码运算时间分析</h2><h3 id="该从哪个角度分析？"><a href="#该从哪个角度分析？" class="headerlink" title="该从哪个角度分析？"></a>该从哪个角度分析？</h3><p>运算时间受到的影响太多了，同样的代码，在超算和个人电脑上，运算时间肯定不同，个人电脑中，处理器型号，内存大小，也会导致执行的速度也不一样，但是，现在，我们仅从代码写法的角度来讨论运算时间的问题，而且是在最差的情况下的时间。</p>
+<h3 id="为什么是最差的情况"><a href="#为什么是最差的情况" class="headerlink" title="为什么是最差的情况"></a>为什么是最差的情况</h3><p>任何一个程序需要尽可能考虑差的情况，比如，一个排序数组的程序，在别人运行的时候，事先说明，<em>本程序排序完全颠倒的数组会很慢(类似{5，4，3，2，1})，其他时候都挺快的</em>，我觉得挺可笑的。一个程序设计的初衷就是要满足客户的各种合理需求的。记得在高考填志愿的时候，我不止一次抱怨填报志愿的网站做的差，好歹是全国人都会用的系统，为什么这么的“简朴”，后来经历过<a target="_blank" rel="noopener" href="http://cet.neea.edu.cn">英语六级报名</a>，<a target="_blank" rel="noopener" href="https://jlpt.neea.edu.cn">日语n2报名</a>后，发现其实做的网站都这样。后来仔细一想，其实全国的电脑中很大一部分是事业单位，高中机房中的老式电脑，不仅装的是XP系统，还装有360系，毒霸系的流氓软件，要是网页做的跟<a target="_blank" rel="noopener" href="https://www.apple.com.cn">苹果官网</a>一样，一些电脑真不一定打得开。这些官方报名网站，设计时就考虑了兼容性的情况，同样，我们的代码也要考虑最差的情况。</p>
 <h3 id="再看一次伪代码"><a href="#再看一次伪代码" class="headerlink" title="再看一次伪代码"></a>再看一次伪代码</h3><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">for</span> j = <span class="number">2</span> to A.length              a<span class="number">1</span></span><br><span class="line">	<span class="attribute">key</span> = A[j]    				   a<span class="number">2</span></span><br><span class="line">	<span class="attribute">i</span> = j - <span class="number">1</span>     				   a<span class="number">3</span></span><br><span class="line">	<span class="attribute">while</span> i &gt; <span class="number">0</span> and A[i] &gt; key     a<span class="number">4</span></span><br><span class="line">		<span class="attribute">A</span>[i + <span class="number">1</span>] = A[i]            a<span class="number">5</span></span><br><span class="line">		<span class="attribute">i</span> = i - <span class="number">1</span>                  a<span class="number">6</span></span><br><span class="line">	<span class="attribute">A</span>[i + <span class="number">1</span>] = key                 a<span class="number">7</span>     </span><br></pre></td></tr></table></figure>
-
 <p>a1,a2……a7对应的每一行代码的执行时间</p>
 <p>在输入后，我们规定运算总时间是T，T的值应该为<br>T = $n_1$a1 + $n_2$a2 + ……$n_7$a7</p>
 
