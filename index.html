@@ -304,8 +304,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-10-12 16:19:12" itemprop="dateModified" datetime="2020-10-12T16:19:12+08:00">2020-10-12</time>
+                <time title="Modified: 2020-10-13 19:30:51" itemprop="dateModified" datetime="2020-10-13T19:30:51+08:00">2020-10-13</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2020-10/" itemprop="url" rel="index"><span itemprop="name">2020/10</span></a>
+                </span>
+            </span>
 
           
 
@@ -332,7 +341,7 @@
 <h2 id="插入排序的伪代码"><a class="header-anchor" href="#插入排序的伪代码">¶</a>插入排序的伪代码</h2>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> j = <span class="number">2</span> to A.length   <span class="comment">//从第二个数遍历到数组末尾，j代表要比较的数</span></span><br><span class="line">	key = A[j]    <span class="comment">//记录A[j]的初始值</span></span><br><span class="line">	i = j - <span class="number">1</span>     <span class="comment">//i代表j的后一个数</span></span><br><span class="line">	<span class="keyword">while</span> i &gt; <span class="number">0</span> <span class="keyword">and</span> A[i] &gt; key </span><br><span class="line">		A[i + <span class="number">1</span>] = A[i]</span><br><span class="line">		i = i - <span class="number">1</span></span><br><span class="line">	A[i + <span class="number">1</span>] = key     <span class="comment">//把A[j]的初始值赋给最后i前面的一个数</span></span><br></pre></td></tr></table></figure>
 <p>先讲一下伪代码，主要有两个作用，<strong>用最简的语言表示算法，让无论学过什么语言的人都能最快看懂</strong>。最简不用多说，没分号，没大括号，循环用缩进表示，颇有python内味，我在原书代码的基础上加了一些注释，相信要看懂更加容易了。如果实在看不懂伪代码，可以看这篇<a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/insertion-sort.html">博客</a>，里面用各种语言写了插入排序。</p>
-<p>我曾经做了一个作死的尝试，写了篇名叫*《不用代码讲插入排序》*的文章，后来写的冗长不说，意思也表达不清，索性作罢，用伪代码讲算法，虽然抽象，但是精确，简洁。</p>
+<p>我曾经做了一个作死的尝试，写了篇名叫<em><strong>不用代码讲插入排序</strong></em>的文章，后来写的冗长不说，意思也表达不清，索性作罢，用伪代码讲算法，虽然抽象，但是精确，简洁。</p>
 <p>让我们用一串数组，来描述这个代码的执行过程</p>
 <blockquote>
 <p>{1, 2, 3, 5, 4}</p>
@@ -363,12 +372,13 @@
 <h3 id="为什么是最差的情况"><a class="header-anchor" href="#为什么是最差的情况">¶</a>为什么是最差的情况</h3>
 <p>任何一个程序需要尽可能考虑差的情况，比如，一个排序数组的程序，在别人运行的时候，事先说明，<em>本程序排序完全颠倒的数组会很慢(类似{5，4，3，2，1})，其他时候都挺快的</em>，我觉得挺可笑的。一个程序设计的初衷就是要满足客户的各种合理需求的。记得在高考填志愿的时候，我不止一次抱怨填报志愿的网站做的差，好歹是全国人都会用的系统，为什么这么的“简朴”，后来经历过<a target="_blank" rel="noopener" href="http://cet.neea.edu.cn">英语六级报名</a>，<a target="_blank" rel="noopener" href="https://jlpt.neea.edu.cn">日语n2报名</a>后，发现其实做的网站都这样。后来仔细一想，其实全国的电脑中很大一部分是事业单位，高中机房中的老式电脑，不仅装的是XP系统，还装有360系，毒霸系的流氓软件，要是网页做的跟<a target="_blank" rel="noopener" href="https://www.apple.com.cn">苹果官网</a>一样，一些电脑真不一定打得开。这些官方报名网站，设计时就考虑了兼容性的情况，同样，我们的代码也要考虑最差的情况。</p>
 <h3 id="再看一次伪代码"><a class="header-anchor" href="#再看一次伪代码">¶</a>再看一次伪代码</h3>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> j = <span class="number">2</span> to A.length              <span class="regexp">//</span>a1</span><br><span class="line">	key = A[j]    				   <span class="regexp">//</span>a2</span><br><span class="line">	i = j - <span class="number">1</span>     				   <span class="regexp">//</span>a3</span><br><span class="line">	<span class="keyword">while</span> i &gt; <span class="number">0</span> and A[i] &gt; key     <span class="regexp">//</span>a4</span><br><span class="line">		A[i + <span class="number">1</span>] = A[i]            <span class="regexp">//</span>a5</span><br><span class="line">		i = i - <span class="number">1</span>                  <span class="regexp">//</span>a6</span><br><span class="line">	A[i + <span class="number">1</span>] = key                 <span class="regexp">//</span>a7     </span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">for</span> j = <span class="number">2</span> to A.length                a<span class="number">1</span> </span><br><span class="line">	<span class="attribute">key</span> = A[j]                   a<span class="number">2</span></span><br><span class="line">	<span class="attribute">i</span> = j - <span class="number">1</span>                    a<span class="number">3</span></span><br><span class="line">	<span class="attribute">while</span> i &gt; <span class="number">0</span> and A[i] &gt; key   a<span class="number">4</span></span><br><span class="line">		<span class="attribute">A</span>[i + <span class="number">1</span>] = A[i]      a<span class="number">5</span></span><br><span class="line">		<span class="attribute">i</span> = i - <span class="number">1</span>            a<span class="number">6</span></span><br><span class="line">	<span class="attribute">A</span>[i + <span class="number">1</span>] = key               a<span class="number">7</span></span><br></pre></td></tr></table></figure>
+<p>​</p>
 <p>a1,a2……a7对应的每一行代码的执行时间</p>
 <p>在输入后，我们规定运算总时间是T，T的值应该为<br>
 T =n1a1 + n2a2 + ……n7a7</p>
 <p>根据前面，算法要考虑最坏的情况，所以，我们默认排序的数组都是像{5,4,3,2,1}这种完全相反的数组，我们就可以得到n元素数组排序的最长时间。</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">for</span> j = <span class="number">2</span> to A.length              //a<span class="number">1</span>		n</span><br><span class="line">	<span class="attribute">key</span> = A[j]    				   //a<span class="number">2</span>		n - <span class="number">1</span></span><br><span class="line">	<span class="attribute">i</span> = j - <span class="number">1</span>     				   //a<span class="number">3</span>		n - <span class="number">1</span></span><br><span class="line">	<span class="attribute">while</span> i &gt; <span class="number">0</span> and A[i] &gt; key     //a<span class="number">4</span>		<span class="number">2</span> + …… + n  </span><br><span class="line">		<span class="attribute">A</span>[i + <span class="number">1</span>] = A[i]            //a<span class="number">5</span>		<span class="number">1</span> + …… + n - <span class="number">1</span> </span><br><span class="line">		<span class="attribute">i</span> = i - <span class="number">1</span>                  //a<span class="number">6</span>		<span class="number">1</span> + …… + n - <span class="number">1</span></span><br><span class="line">	<span class="attribute">A</span>[i + <span class="number">1</span>] = key                 //a<span class="number">7</span>		n - <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">for</span> j = <span class="number">2</span> to A.length                  a<span class="number">1</span>		n</span><br><span class="line">	<span class="attribute">key</span> = A[j]    		       a<span class="number">2</span>		n - <span class="number">1</span></span><br><span class="line">	<span class="attribute">i</span> = j - <span class="number">1</span>     		       a<span class="number">3</span>		n - <span class="number">1</span></span><br><span class="line">	<span class="attribute">while</span> i &gt; <span class="number">0</span> and A[i] &gt; key     a<span class="number">4</span>		<span class="number">2</span> + …… + n  </span><br><span class="line">		<span class="attribute">A</span>[i + <span class="number">1</span>] = A[i]        a<span class="number">5</span>		<span class="number">1</span> + …… + n - <span class="number">1</span> </span><br><span class="line">		<span class="attribute">i</span> = i - <span class="number">1</span>              a<span class="number">6</span>		<span class="number">1</span> + …… + n - <span class="number">1</span></span><br><span class="line">	<span class="attribute">A</span>[i + <span class="number">1</span>] = key                 a<span class="number">7</span>		n - <span class="number">1</span></span><br></pre></td></tr></table></figure>
 <p>后面的数代表执行次数，下面我来逐行讲解<br>
 <strong>1</strong> 从2到n的遍历，看似应该执行n - 1次，但是循环的条件句最后还要判断一下，所以加一，如果这里不明白，可以看第4行代码的讲解<br>
 <strong>2</strong> 每对应一个j值，都执行一次，共有n - 1个j值，执行你n - 1次<br>
@@ -427,7 +437,7 @@ T =n1a1 + n2a2 + ……n7a7</p>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-10-12 07:33:11" itemprop="dateModified" datetime="2020-10-12T07:33:11+08:00">2020-10-12</time>
+                <time title="Modified: 2020-10-13 19:31:42" itemprop="dateModified" datetime="2020-10-13T19:31:42+08:00">2020-10-13</time>
               </span>
 
           
@@ -443,7 +453,7 @@ T =n1a1 + n2a2 + ……n7a7</p>
       
           <p>这个博客创立的初衷是记录自己的学习和生活，后续每个星期会更新一篇长文，水品不一定高，但是我一定会竭尽全力把它写好，同时也会写一些生活趣事。如果每年的9月30号，打开博客，能看到自己一年的成长，也是件幸福的事。</p>
 <h3 id="为什么要自己建博客，不直接将博客发在类似csdn的博客论坛上？"><a class="header-anchor" href="#为什么要自己建博客，不直接将博客发在类似csdn的博客论坛上？">¶</a>为什么要自己建博客，不直接将博客发在类似csdn的博客论坛上？</h3>
-<p>有自己的博客，能给我一种在经营自己的家的感觉，如果把博客发在csdn，当然可以，但是总觉得少了点什么。这个博客是用hexo框架+next主题搭建github pages上的，博客是免费的，只有<a href="www.chinesesheep.com">www.chinesesheep.com</a> 这个域名花了我55元。虽然有点水，但是也能满足我的基本需求，如果搭建动态博客，需要的自己租服务器，而且也更难配置，先在我才大一刚毕业，等以后学习了一些前端知识，再考虑优化一下这个博客或者再搭建一个动态博客。</p>
+<p>有自己的博客，能给我一种在经营自己的家的感觉，如果把博客发在csdn，当然可以，但是总觉得少了点什么。这个博客是用hexo框架+next主题搭建github pages上的，博客是免费的，只有<a href="www.chinesesheep.com">www.chinesesheep.com</a> 这个域名花了我55元。虽然有点水，但是也能满足我的基本需求，如果搭建动态博客，需要的自己租服务器，而且也更难配置，我现在刚上大二，等以后学习了一些前端知识，再考虑优化一下这个博客或者再搭建一个动态博客。</p>
 <h3 id="一篇长文内容是什么？"><a class="header-anchor" href="#一篇长文内容是什么？">¶</a>一篇长文内容是什么？</h3>
 <p>以后每个月会有一个总计划，规划一下这个月要写哪些内容，我对自己的要求是写别人写的少的，同时比较重要的知识，会尽量写的详细，有趣一些。</p>
 <h3 id="这个博客的目标"><a class="header-anchor" href="#这个博客的目标">¶</a>这个博客的目标</h3>
@@ -535,10 +545,16 @@ T =n1a1 + n2a2 + ……n7a7</p>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
