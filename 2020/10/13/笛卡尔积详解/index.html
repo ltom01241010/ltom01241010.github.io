@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ltom01241010.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="简介这个博客参考左孝陵先生的《离散数学》，会尽量简单的讲讲笛卡尔积，能够给大家一个更加具体的认识。 什么是序偶要知道什么是序偶，先得弄明白序偶的作用，我觉得序偶就是带顺序的集合，用来表示一些集合表示不了的东西。比如在小学学的直角坐标系上，有两个点，(2,3)和(3,2)，点的坐标就是序偶，因为它自带顺序，为什么每次一个点都先读x坐标再读y坐标？是因为规定了顺序，才能表示更多的点。坐标系如果用集合来">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单介绍笛卡尔积">
+<meta property="og:url" content="http://ltom01241010.github.io/2020/10/13/%E7%AC%9B%E5%8D%A1%E5%B0%94%E7%A7%AF%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:site_name" content="ChineseSheep">
+<meta property="og:description" content="简介这个博客参考左孝陵先生的《离散数学》，会尽量简单的讲讲笛卡尔积，能够给大家一个更加具体的认识。 什么是序偶要知道什么是序偶，先得弄明白序偶的作用，我觉得序偶就是带顺序的集合，用来表示一些集合表示不了的东西。比如在小学学的直角坐标系上，有两个点，(2,3)和(3,2)，点的坐标就是序偶，因为它自带顺序，为什么每次一个点都先读x坐标再读y坐标？是因为规定了顺序，才能表示更多的点。坐标系如果用集合来">
+<meta property="og:locale">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gjprbcixp3j318t0u01kx.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gjpril6qmuj309p03wglo.jpg">
+<meta property="article:published_time" content="2020-10-13T12:26:18.000Z">
+<meta property="article:modified_time" content="2020-10-17T10:36:05.124Z">
+<meta property="article:author" content="ChineseSheep">
+<meta property="article:tag" content="离散数学📖">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gjprbcixp3j318t0u01kx.jpg">
+
+<link rel="canonical" href="http://ltom01241010.github.io/2020/10/13/%E7%AC%9B%E5%8D%A1%E5%B0%94%E7%A7%AF%E8%AF%A6%E8%A7%A3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>简单介绍笛卡尔积 | ChineseSheep</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">ChineseSheep</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://ltom01241010.github.io/2020/10/13/%E7%AC%9B%E5%8D%A1%E5%B0%94%E7%A7%AF%E8%AF%A6%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gjmqrr57w8j30u00tyqbq.jpg">
+      <meta itemprop="name" content="ChineseSheep">
+      <meta itemprop="description" content="努力に勝る天才無し">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ChineseSheep">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          简单介绍笛卡尔积
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-10-13 20:26:18" itemprop="dateCreated datePublished" datetime="2020-10-13T20:26:18+08:00">2020-10-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-10-17 18:36:05" itemprop="dateModified" datetime="2020-10-17T18:36:05+08:00">2020-10-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2020-10/" itemprop="url" rel="index"><span itemprop="name">2020/10</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>这个博客参考左孝陵先生的《离散数学》，会尽量简单的讲讲笛卡尔积，能够给大家一个更加具体的认识。</p>
+<h2 id="什么是序偶"><a href="#什么是序偶" class="headerlink" title="什么是序偶"></a>什么是序偶</h2><p>要知道什么是序偶，先得弄明白序偶的作用，我觉得<strong>序偶就是带顺序的集合</strong>，用来表示一些集合表示不了的东西。比如在小学学的直角坐标系上，有两个点，(2,3)和(3,2)，点的坐标就是序偶，因为它自带顺序，为什么每次一个点都先读x坐标再读y坐标？是因为规定了顺序，才能表示更多的点。坐标系如果用集合来表示坐标，那{2，3}，{3，2}就是同一个点了。</p>
+<p>再举一个例子吧，老师对同学们说报出你们的身高体重，你有一米八，体重190斤。你如果说“190，180”老师会认为你是一米九，体重180斤，因为老师问的时候带了一个顺序，问的是序偶，<em>身高到体重</em>，如果你按<em>体重到身高</em>报，就完全错了</p>
+<h2 id="什么是笛卡尔积"><a href="#什么是笛卡尔积" class="headerlink" title="什么是笛卡尔积"></a>什么是笛卡尔积</h2><blockquote>
+<p>令A和B是任意两个集合，若序偶的第一个成员是A的元素，第二个成员是B的元素，所有这样的序偶集合，称为集合A和B的笛卡尔乘积或直积，记做A X B</p>
+</blockquote>
+<p>如果觉得定义太抽象，也没有关系，让我们继续之前老师记身高体重的例子，再没有你这种反着来报体重身高的人后，老师很快就得到了全班同学的身高体重表格，<br>| 身高 | 体重 |<br>| :——-| :——-|<br>|170| 140|<br>|180| 190|<br>|190| 180|<br>|……| …… |</p>
+<p>看看这个表来源于什么，来源于全班同学的身高的集合A，体重的集合B。那么，全班同学的体重身高就可以表示为A X B，全班同学的体重身高就可以表示为B X A </p>
+<h3 id="更加严谨的表达方式"><a href="#更加严谨的表达方式" class="headerlink" title="更加严谨的表达方式"></a>更加严谨的表达方式</h3><p>假设身高集合为A={a1,a2,a3,a4……an}，体重集合为B = {b1,b2,b3,b4,b5……}，那么A X B = {<a1,b1>, <a1,b2> ,<a1, b3>,……<a1,bn>,<a2,b1>,<a2,b2>……<an,bn> }</an,bn></a2,b2></a2,b1></a1,bn></a1,></a1,b2></a1,b1></p>
+<p>具体特征是a永远在前面，b永远在后面，因为是A X B，一共有n X n 个元素，<strong>因为A,B数组的元素个数为n,n</strong></p>
+<h2 id="笛卡尔积与函数的联动"><a href="#笛卡尔积与函数的联动" class="headerlink" title="笛卡尔积与函数的联动"></a>笛卡尔积与函数的联动</h2><p>有这样一个函数，定义域为x，值域为1，那么这个函数可以表示为 R X 1的子集，能不能画出这个题的图像呢？</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gjprbcixp3j318t0u01kx.jpg" alt="y = 1函数图像"></p>
+<p>其实我根据定义域和值域就用y = 1来画这个题的图像是不严谨的，应该说，这题是运气好才能画出图像，但是不可能确定表达式，因为决定函数的是定义域和对应关系。比如这题的函数可以是</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gjpril6qmuj309p03wglo.jpg" style="zoom:33%;"></p>
+<p><strong>但我想表达的是，函数的图像，不可能超过它定义域和值域的笛卡尔积</strong>，而是被包含在笛卡尔积的图像之中，我能准确的画出这个题的图像，是因为R X 1这个笛卡尔积，结果是一条直线，导致函数图像的可能性降低，所以能画出图像。</p>
+<p>如果我告诉你定义域为[-3,3]，值域为[-3,3]，是肯定画不出图像，确定不了函数的，但是我可以肯定的是，函数的图像一定在[-3,3] X [-3,3]的正方形图像当中</p>
+
+    </div>
+
+
+    <div>
+      
+         <div>
+      
+          <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束感谢您的阅读-------------</div>
+      
+  </div>
+      
+    </div>
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%F0%9F%93%96/" rel="tag"><i class="fa fa-tag"></i> 离散数学📖</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/10/12/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%85%AC%E5%BC%8F%E9%97%AE%E9%A2%98/" rel="prev" title="关于博客的公式问题">
+      <i class="fa fa-chevron-left"></i> 关于博客的公式问题
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/10/17/java%E5%AE%9E%E7%8E%B0%E5%AD%A6%E7%94%9F%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" rel="next" title="java实现学生管理系统">
+      java实现学生管理系统 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%BA%8F%E5%81%B6"><span class="nav-number">2.</span> <span class="nav-text">什么是序偶</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%AC%9B%E5%8D%A1%E5%B0%94%E7%A7%AF"><span class="nav-number">3.</span> <span class="nav-text">什么是笛卡尔积</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E5%8A%A0%E4%B8%A5%E8%B0%A8%E7%9A%84%E8%A1%A8%E8%BE%BE%E6%96%B9%E5%BC%8F"><span class="nav-number">3.1.</span> <span class="nav-text">更加严谨的表达方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%9B%E5%8D%A1%E5%B0%94%E7%A7%AF%E4%B8%8E%E5%87%BD%E6%95%B0%E7%9A%84%E8%81%94%E5%8A%A8"><span class="nav-number">4.</span> <span class="nav-text">笛卡尔积与函数的联动</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ChineseSheep"
+      src="https://tva1.sinaimg.cn/large/007S8ZIlly1gjmqrr57w8j30u00tyqbq.jpg">
+  <p class="site-author-name" itemprop="name">ChineseSheep</p>
+  <div class="site-description" itemprop="description">努力に勝る天才無し</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChineseSheep</span>
+</div>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">所有博客共7.4k字</span>
+</div>
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -37,31 +37,39 @@
     var CONFIG = {"hostname":"ltom01241010.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="努力に勝る天才無し">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ChineseSheep">
-<meta property="og:url" content="http://ltom01241010.github.io/index.html">
+  <meta name="description" content="简介这篇博客参考b站黑马程序员刘意老师的Java课程，刘老师讲的很好，写这篇博客是补充说明一些我容易出错的地方，如果你不知道学生管理系统的功能是什么，我会画一个思维导图贴在下面，然后是实现的Java源码，当然，我会把其中重要的部分，单独拿出来讲讲 学生管理系统要实现的功能 整段源码student_main.java主函数123456789101112131415161718192021222324">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java实现学生管理系统">
+<meta property="og:url" content="http://ltom01241010.github.io/2020/10/17/java%E5%AE%9E%E7%8E%B0%E5%AD%A6%E7%94%9F%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html">
 <meta property="og:site_name" content="ChineseSheep">
-<meta property="og:description" content="努力に勝る天才無し">
+<meta property="og:description" content="简介这篇博客参考b站黑马程序员刘意老师的Java课程，刘老师讲的很好，写这篇博客是补充说明一些我容易出错的地方，如果你不知道学生管理系统的功能是什么，我会画一个思维导图贴在下面，然后是实现的Java源码，当然，我会把其中重要的部分，单独拿出来讲讲 学生管理系统要实现的功能 整段源码student_main.java主函数123456789101112131415161718192021222324">
 <meta property="og:locale">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gjs2cq3554j31vi0hsgos.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gjs567einjj30a80bgq3i.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gjs568qwcaj30ks0yc762.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gjs56a4fkhj30ik0tegnc.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gjs5wu02q6j306w09i74n.jpg">
+<meta property="article:published_time" content="2020-10-17T00:51:45.000Z">
+<meta property="article:modified_time" content="2020-10-17T10:37:02.143Z">
 <meta property="article:author" content="ChineseSheep">
-<meta property="article:tag" content="算法导论 算法基础">
+<meta property="article:tag" content="java实战🌚">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gjs2cq3554j31vi0hsgos.jpg">
 
-<link rel="canonical" href="http://ltom01241010.github.io/">
+<link rel="canonical" href="http://ltom01241010.github.io/2020/10/17/java%E5%AE%9E%E7%8E%B0%E5%AD%A6%E7%94%9F%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-Hans'
   };
 </script>
 
-  <title>  - ChineseSheep </title>
+  <title>java实现学生管理系统 | ChineseSheep</title>
   
 
 
@@ -202,9 +210,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
@@ -220,10 +229,9 @@
       <meta itemprop="name" content="ChineseSheep">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/17/java%E5%AE%9E%E7%8E%B0%E5%AD%A6%E7%94%9F%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">java实现学生管理系统</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          java实现学生管理系统
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -256,7 +264,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>这篇博客参考<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1gb411F76B?p=139">b站黑马程序员刘意老师的Java课程</a>，刘老师讲的很好，写这篇博客是补充说明一些我容易出错的地方，如果你不知道学生管理系统的功能是什么，我会画一个思维导图贴在下面，然后是实现的Java源码，当然，我会把其中重要的部分，单独拿出来讲讲</p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>这篇博客参考<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1gb411F76B?p=139">b站黑马程序员刘意老师的Java课程</a>，刘老师讲的很好，写这篇博客是补充说明一些我容易出错的地方，如果你不知道学生管理系统的功能是什么，我会画一个思维导图贴在下面，然后是实现的Java源码，当然，我会把其中重要的部分，单独拿出来讲讲</p>
 <h2 id="学生管理系统要实现的功能"><a href="#学生管理系统要实现的功能" class="headerlink" title="学生管理系统要实现的功能"></a>学生管理系统要实现的功能</h2><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gjs2cq3554j31vi0hsgos.jpg" alt="需要实现功能的思维导图"></p>
 <h2 id="整段源码"><a href="#整段源码" class="headerlink" title="整段源码"></a>整段源码</h2><h3 id="student-main-java主函数"><a href="#student-main-java主函数" class="headerlink" title="student_main.java主函数"></a>student_main.java主函数</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> student_lei;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">student_main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner sc = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="comment">//定义一个集合，装入student类</span></span><br><span class="line">        ArrayList&lt;student&gt; arr = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="comment">//定义初使页面，并使用死循环，退出使用system.exit(0)</span></span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;-----------&quot;</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;1.添加学生&quot;</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;2.删除学生&quot;</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;3.修改学生&quot;</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;4.查看所有学生&quot;</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;5.退出&quot;</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;输入你的选择：&quot;</span>);</span><br><span class="line">            <span class="keyword">int</span> n = sc.nextInt();</span><br><span class="line">            <span class="keyword">switch</span> (n) &#123;</span><br><span class="line">                <span class="comment">//按照输入的数字调用对应的函数</span></span><br><span class="line">                <span class="keyword">case</span> <span class="number">1</span> -&gt; addStudent(arr);</span><br><span class="line">                <span class="keyword">case</span> <span class="number">2</span> -&gt; deleteStudent(arr);</span><br><span class="line">                <span class="keyword">case</span> <span class="number">3</span> -&gt; updateStudent(arr);</span><br><span class="line">                <span class="keyword">case</span> <span class="number">4</span> -&gt; showStudent(arr);</span><br><span class="line">                <span class="keyword">case</span> <span class="number">5</span> -&gt; System.exit(<span class="number">0</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//添加学生函数</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">addStudent</span><span class="params">(ArrayList&lt;student&gt; arr)</span> </span>&#123;</span><br><span class="line">        Scanner sc = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="comment">//定义在外面，使后面的print能够调用</span></span><br><span class="line">        String sid;</span><br><span class="line">        <span class="comment">//用死循环配合isUsed函数判断是否输入相同学号</span></span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;学号&quot;</span>);</span><br><span class="line">            sid = sc.nextLine();</span><br><span class="line">            <span class="keyword">if</span> (isUsed(arr, sid)) &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;学号输入重复，请重新输入&quot;</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;姓名&quot;</span>);</span><br><span class="line">        String name = sc.nextLine();</span><br><span class="line">        System.out.println(<span class="string">&quot;年龄&quot;</span>);</span><br><span class="line">        String age = sc.nextLine();</span><br><span class="line">        System.out.println(<span class="string">&quot;居住地&quot;</span>);</span><br><span class="line">        String address = sc.nextLine();</span><br><span class="line">        <span class="comment">//装进student类中</span></span><br><span class="line">        student s = <span class="keyword">new</span> student();</span><br><span class="line">        s.setSid(sid);</span><br><span class="line">        s.setName(name);</span><br><span class="line">        s.setAge(age);</span><br><span class="line">        s.setAddress(address);</span><br><span class="line">        <span class="comment">//把类装到集合中</span></span><br><span class="line">        arr.add(s);</span><br><span class="line">        System.out.println(<span class="string">&quot;添加学生成功!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//删除学生函数</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">deleteStudent</span><span class="params">(ArrayList&lt;student&gt; arr)</span> </span>&#123;</span><br><span class="line">        Scanner sc = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入要删除学生的学号：&quot;</span>);</span><br><span class="line">        String sid = sc.nextLine();</span><br><span class="line">        <span class="comment">//用boolean来判断是否删除成功，Java中不能把0当作false</span></span><br><span class="line">        <span class="keyword">boolean</span> index = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; arr.size(); j++) &#123;</span><br><span class="line">            student s = arr.get(j);</span><br><span class="line">            <span class="comment">//遍历加if，删除对应的学生</span></span><br><span class="line">            <span class="keyword">if</span> (s.getSid().equals(sid)) &#123;</span><br><span class="line">                arr.remove(j);</span><br><span class="line">                index = <span class="keyword">false</span>;</span><br><span class="line">                System.out.println(<span class="string">&quot;删除成功！&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (index) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;学号输入错误&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//修改学生函数</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">updateStudent</span><span class="params">(ArrayList&lt;student&gt; arr)</span> </span>&#123;</span><br><span class="line">        Scanner sc = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入要修改的学生学号&quot;</span>);</span><br><span class="line">        String n = sc.nextLine();</span><br><span class="line">        <span class="keyword">int</span> temp = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; arr.size(); j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr.get(j).getSid().equals(n)) &#123;</span><br><span class="line">                temp = j;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//修改学生功能菜单</span></span><br><span class="line">        System.out.println(<span class="string">&quot;-----------&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;1.修改学号&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;2.修改姓名&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;3.修改年龄&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;4.修改居住地&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入你的选择&quot;</span>);</span><br><span class="line">        <span class="keyword">int</span> s = sc.nextInt();</span><br><span class="line">        <span class="keyword">switch</span> (s) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">1</span> -&gt; &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;输入新的学号&quot;</span>);</span><br><span class="line">                <span class="comment">//与which连用时，删除缓存</span></span><br><span class="line">                sc.nextLine();</span><br><span class="line">                String newSid = sc.nextLine();</span><br><span class="line">                arr.get(temp).setSid(newSid);</span><br><span class="line">                System.out.println(<span class="string">&quot;修改成功&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">2</span> -&gt; &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;输入新姓名&quot;</span>);</span><br><span class="line">                sc.nextLine();</span><br><span class="line">                String newName = sc.nextLine();</span><br><span class="line">                arr.get(temp).setName(newName);</span><br><span class="line">                System.out.println(<span class="string">&quot;修改成功&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">3</span> -&gt; &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;输入新年龄&quot;</span>);</span><br><span class="line">                sc.nextLine();</span><br><span class="line">                String newAge = sc.nextLine();</span><br><span class="line">                arr.get(temp).setAge(newAge);</span><br><span class="line">                System.out.println(<span class="string">&quot;修改成功&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">4</span> -&gt; &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;输入新居住地&quot;</span>);</span><br><span class="line">                sc.nextLine();</span><br><span class="line">                String newAddress = sc.nextLine();</span><br><span class="line">                arr.get(temp).setAddress(newAddress);</span><br><span class="line">                System.out.println(<span class="string">&quot;修改成功&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//展示学生函数</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">showStudent</span><span class="params">(ArrayList&lt;student&gt; arr)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//判断是否有数据存入其中</span></span><br><span class="line">        <span class="keyword">if</span> (arr.size() == <span class="number">0</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;无数据，请先输入数据&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//使用制表符制作表格，更好的展示</span></span><br><span class="line">        System.out.println(<span class="string">&quot;学号&quot;</span> + <span class="string">&quot;\t&quot;</span> + <span class="string">&quot;姓名&quot;</span> + <span class="string">&quot;\t&quot;</span> + <span class="string">&quot;年龄&quot;</span> + <span class="string">&quot;\t&quot;</span> + <span class="string">&quot;地址&quot;</span>);</span><br><span class="line">        <span class="comment">//可以使用增强for循环，针对只对数组，集合中对象单一遍历操作的函数</span></span><br><span class="line">        <span class="keyword">for</span> (student s : arr) &#123;</span><br><span class="line">            System.out.println(s.getSid() + <span class="string">&quot;\t&quot;</span> + s.getName() + <span class="string">&quot;\t&quot;</span> + s.getAge() + <span class="string">&quot;\t&quot;</span> + s.getAddress());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//判断是否有相同学号的函数，传入集合和输入的新学号，在studentAdd函数中使用，返回值根据情况有所不同</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isUsed</span><span class="params">(ArrayList&lt;student&gt; arr, String sid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">boolean</span> n = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">for</span> (student s : arr) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s.getSid().equals(sid)) &#123;</span><br><span class="line">                n = <span class="keyword">true</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> n;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h3 id="student-java类"><a href="#student-java类" class="headerlink" title="student.java类"></a>student.java类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> student_lei;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">student</span> </span>&#123;</span><br><span class="line">    <span class="comment">//学号</span></span><br><span class="line">    <span class="keyword">private</span> String sid;</span><br><span class="line">    <span class="comment">//姓名</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="comment">//年龄</span></span><br><span class="line">    <span class="keyword">private</span> String age;</span><br><span class="line">    <span class="comment">//居住地</span></span><br><span class="line">    <span class="keyword">private</span> String address;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">student</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="comment">//使用command + n 自动生成构造函数，配合shift，还能生成get，set函数</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">student</span><span class="params">(String sid, String name, String age, String address)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.sid = sid;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">        <span class="keyword">this</span>.address = address;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getSid</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sid;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSid</span><span class="params">(String sid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.sid = sid;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(String age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getAddress</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> address;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAddress</span><span class="params">(String address)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.address = address;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -294,381 +302,43 @@
 <p>比较重要的就是制表符的使用，在学C语言时就把<strong>\t</strong>叫制表符，这次使用\t按表格输出数据，会有更好的展示效果</p>
 <h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>到此，需要注意的点都讲完了，这个管理系统虽然简单，但是在写它的过程中，我还是发现了许多我之前不知道的知识，算是有所收获吧，我也会经常拿这篇文章看看，复习一下，如果太长时间不敲，也会忘记，我一般复习的时候，会同时打开intellij和sublime，先用sublime敲一下代码中比较重要的部分，在对照intellij看看写错没有，只需要敲比较重要，容易出错的地方就行，希望大家也能多多复习哦👾</p>
 
-      
     </div>
 
 
     <div>
       
+         <div>
+      
+          <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束感谢您的阅读-------------</div>
+      
+  </div>
+      
     </div>
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
+          <div class="post-tags">
+              <a href="/tags/java%E5%AE%9E%E6%88%98%F0%9F%8C%9A/" rel="tag"><i class="fa fa-tag"></i> java实战🌚</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/10/13/%E7%AC%9B%E5%8D%A1%E5%B0%94%E7%A7%AF%E8%AF%A6%E8%A7%A3/" rel="prev" title="简单介绍笛卡尔积">
+      <i class="fa fa-chevron-left"></i> 简单介绍笛卡尔积
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
       </footer>
+    
   </article>
   
   
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://ltom01241010.github.io/2020/10/13/%E7%AC%9B%E5%8D%A1%E5%B0%94%E7%A7%AF%E8%AF%A6%E8%A7%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gjmqrr57w8j30u00tyqbq.jpg">
-      <meta itemprop="name" content="ChineseSheep">
-      <meta itemprop="description" content="努力に勝る天才無し">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ChineseSheep">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/13/%E7%AC%9B%E5%8D%A1%E5%B0%94%E7%A7%AF%E8%AF%A6%E8%A7%A3/" class="post-title-link" itemprop="url">简单介绍笛卡尔积</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-10-13 20:26:18" itemprop="dateCreated datePublished" datetime="2020-10-13T20:26:18+08:00">2020-10-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-10-17 18:36:05" itemprop="dateModified" datetime="2020-10-17T18:36:05+08:00">2020-10-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/2020-10/" itemprop="url" rel="index"><span itemprop="name">2020/10</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>这个博客参考左孝陵先生的《离散数学》，会尽量简单的讲讲笛卡尔积，能够给大家一个更加具体的认识。</p>
-<h2 id="什么是序偶"><a href="#什么是序偶" class="headerlink" title="什么是序偶"></a>什么是序偶</h2><p>要知道什么是序偶，先得弄明白序偶的作用，我觉得<strong>序偶就是带顺序的集合</strong>，用来表示一些集合表示不了的东西。比如在小学学的直角坐标系上，有两个点，(2,3)和(3,2)，点的坐标就是序偶，因为它自带顺序，为什么每次一个点都先读x坐标再读y坐标？是因为规定了顺序，才能表示更多的点。坐标系如果用集合来表示坐标，那{2，3}，{3，2}就是同一个点了。</p>
-<p>再举一个例子吧，老师对同学们说报出你们的身高体重，你有一米八，体重190斤。你如果说“190，180”老师会认为你是一米九，体重180斤，因为老师问的时候带了一个顺序，问的是序偶，<em>身高到体重</em>，如果你按<em>体重到身高</em>报，就完全错了</p>
-<h2 id="什么是笛卡尔积"><a href="#什么是笛卡尔积" class="headerlink" title="什么是笛卡尔积"></a>什么是笛卡尔积</h2><blockquote>
-<p>令A和B是任意两个集合，若序偶的第一个成员是A的元素，第二个成员是B的元素，所有这样的序偶集合，称为集合A和B的笛卡尔乘积或直积，记做A X B</p>
-</blockquote>
-<p>如果觉得定义太抽象，也没有关系，让我们继续之前老师记身高体重的例子，再没有你这种反着来报体重身高的人后，老师很快就得到了全班同学的身高体重表格，<br>| 身高 | 体重 |<br>| :——-| :——-|<br>|170| 140|<br>|180| 190|<br>|190| 180|<br>|……| …… |</p>
-<p>看看这个表来源于什么，来源于全班同学的身高的集合A，体重的集合B。那么，全班同学的体重身高就可以表示为A X B，全班同学的体重身高就可以表示为B X A </p>
-<h3 id="更加严谨的表达方式"><a href="#更加严谨的表达方式" class="headerlink" title="更加严谨的表达方式"></a>更加严谨的表达方式</h3><p>假设身高集合为A={a1,a2,a3,a4……an}，体重集合为B = {b1,b2,b3,b4,b5……}，那么A X B = {<a1,b1>, <a1,b2> ,<a1, b3>,……<a1,bn>,<a2,b1>,<a2,b2>……<an,bn> }</an,bn></a2,b2></a2,b1></a1,bn></a1,></a1,b2></a1,b1></p>
-<p>具体特征是a永远在前面，b永远在后面，因为是A X B，一共有n X n 个元素，<strong>因为A,B数组的元素个数为n,n</strong></p>
-<h2 id="笛卡尔积与函数的联动"><a href="#笛卡尔积与函数的联动" class="headerlink" title="笛卡尔积与函数的联动"></a>笛卡尔积与函数的联动</h2><p>有这样一个函数，定义域为x，值域为1，那么这个函数可以表示为 R X 1的子集，能不能画出这个题的图像呢？</p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gjprbcixp3j318t0u01kx.jpg" alt="y = 1函数图像"></p>
-<p>其实我根据定义域和值域就用y = 1来画这个题的图像是不严谨的，应该说，这题是运气好才能画出图像，但是不可能确定表达式，因为决定函数的是定义域和对应关系。比如这题的函数可以是</p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gjpril6qmuj309p03wglo.jpg" style="zoom:33%;"></p>
-<p><strong>但我想表达的是，函数的图像，不可能超过它定义域和值域的笛卡尔积</strong>，而是被包含在笛卡尔积的图像之中，我能准确的画出这个题的图像，是因为R X 1这个笛卡尔积，结果是一条直线，导致函数图像的可能性降低，所以能画出图像。</p>
-<p>如果我告诉你定义域为[-3,3]，值域为[-3,3]，是肯定画不出图像，确定不了函数的，但是我可以肯定的是，函数的图像一定在[-3,3] X [-3,3]的正方形图像当中</p>
-
-      
-    </div>
-
-
-    <div>
-      
-    </div>
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://ltom01241010.github.io/2020/10/12/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%85%AC%E5%BC%8F%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gjmqrr57w8j30u00tyqbq.jpg">
-      <meta itemprop="name" content="ChineseSheep">
-      <meta itemprop="description" content="努力に勝る天才無し">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ChineseSheep">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/12/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%85%AC%E5%BC%8F%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">关于博客的公式问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-10-12 15:16:00" itemprop="dateCreated datePublished" datetime="2020-10-12T15:16:00+08:00">2020-10-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-10-17 18:37:02" itemprop="dateModified" datetime="2020-10-17T18:37:02+08:00">2020-10-17</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>简单更一下，最近关于插入排序和归并排序的博客还没写完，在写的过程中，难免要用到数学公式，如果要在hexo使用latex写数学公式的话，需要mathjax插件，为了这事，弄了两天，按照别人的教程一步步走，就是一直装不上，不知道是不是Mac Os系统的原因，不过Mac上有ipic这个神器，以后博客的公式部分，我会写好了截图，在用ipic把图片上传。</p>
-<p>算法基础的后面一章，是为第三章打基础的，基本上全是数学，没啥算法，所以不用latex完全写不了，这也是我这几天这么急着装mathjax的原因，提前剧透一下，下一章比较硬核哦，这个博客的初衷就是把知识讲简单，但是还是避免不了使用数学公式，请做好心理准备哦～</p>
-<p>由于公式渲染不出来，先看看两种效果吧</p>
-<p>latex在hexo中直接写公式，渲染失败例</p>
-<p>$ a_{1}^n $</p>
-<p>在我的typora中这行代码是这样的</p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gjml2gp9lrj302c02amx1.jpg" style="zoom:50%;"></p>
-<p>悲💩</p>
-
-      
-    </div>
-
-
-    <div>
-      
-    </div>
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://ltom01241010.github.io/2020/10/05/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F%E4%B8%8E%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gjmqrr57w8j30u00tyqbq.jpg">
-      <meta itemprop="name" content="ChineseSheep">
-      <meta itemprop="description" content="努力に勝る天才無し">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ChineseSheep">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/05/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F%E4%B8%8E%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/" class="post-title-link" itemprop="url">算法基础——插入排序与归并排序</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-10-05 20:26:27" itemprop="dateCreated datePublished" datetime="2020-10-05T20:26:27+08:00">2020-10-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-10-17 18:37:02" itemprop="dateModified" datetime="2020-10-17T18:37:02+08:00">2020-10-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/2020-10/" itemprop="url" rel="index"><span itemprop="name">2020/10</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="序"><a href="#序" class="headerlink" title="序"></a>序</h1><p>这篇文章主要是依照《<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Introduction_to_Algorithms">算法导论</a>》这本书来写的，期间边看书边看<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Kx411f7bL">MIT的公开课</a> ，课是本书的作者之一讲的，这篇文章我会着重讲讲我听不明白的一些问题，并一一解决，文章篇幅较长，希望能耐心看完哦。</p>
-<h1 id="简单的介绍"><a href="#简单的介绍" class="headerlink" title="简单的介绍"></a>简单的介绍</h1><p>回忆起第一次接触排序问题，是在大一的C语言课上，老师要我们通过两个for循环把一个数组中的元素从小到大排序，看着网上的技术博客勉勉强强写出来后，才知道这叫做冒泡排序，再后来，学了把两个有序的数组合并成一个大的有序数组，也就是这次归并排序的雏形。学习Java后，遇到排序问题，一般直接调用sort函数。仔细想想，其实我们排序数组的方法有那么多种，怎么写代码去实现的方法就更多了，那种好一些，那种坏一些，我从来没有仔细探究过，但在《算法导论》中，作者并没有强调源码怎么写，而是探究更深层次的问题，代码的性能优劣。</p>
-<h1 id="什么是性能"><a href="#什么是性能" class="headerlink" title="什么是性能"></a>什么是性能</h1><p>性能就是程序的运行速度，但是，<strong>一个程序的优劣，不仅仅要看性能，还要看许多其他的方面，比如安全性，可维护性。</strong></p>
-<p>打个比方吧，假如你是一名学霸，每次考数学的时候，你都能提前半个小时把卷子写完，然后潇洒地提前交卷，但是，你总是跟全班第一差10分，你很苦恼，去问数学老师，老师说，你下次写慢点，不确定的题多检查一下，把字迹写工整一些。果然，下一次考试，你虽然没有像以往一样提前交卷，但你成了全班第一。</p>
-<p>通过这个比方，我们可以知道，把卷子写的飞快，但是无法保证正确不行，字迹不工整不行。回到代码，一个程序，一秒钟就执行完了，但是结果是错的，另一个程序，一分钟才执行完，但是保证百分百正确。同样的例子还有很多，性能嘛，跟正确性，安全性等等没法比。<strong>但是就像<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Kx411f7bL">MIT的公开课</a>里说的，性能就像货币，人要的不是更多的钱，而是钱能买来的东西。</strong>尽管同样的程序，Java写的比C要慢很多，但是我们愿意用Java写程序，因为它能实现更多的功能。性能总是作为牺牲，去满足别的需求，这就是性能为什么处于底层的原因。</p>
-<p>让我们通过一个都遇到过的例子来再说明一下吧。学习C语言时，都学多scanf函数吧，当我们兴奋的把写好的程序给同学运行时，同学往往不知道要输入啥，这时，我们需要用printf(“请输入一个XX数:”)，来提示同学要输入什么内容，加上这一段代码，程序就变得<em>“冗余”</em>了一些，多运行了一段代码，稍微慢了一些，但是，加强了我们代码的可读性。</p>
-<p>说了这么多，相信大家都明白了性能的含义和作用，那么让我们来看看第一个算法——插入排序吧！</p>
-<h1 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h1><h2 id="插入排序的伪代码"><a href="#插入排序的伪代码" class="headerlink" title="插入排序的伪代码"></a>插入排序的伪代码</h2><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> j = <span class="number">2</span> to A.length   <span class="comment">//从第二个数遍历到数组末尾，j代表要比较的数</span></span><br><span class="line">	key = A[j]    <span class="comment">//记录A[j]的初始值</span></span><br><span class="line">	i = j - <span class="number">1</span>     <span class="comment">//i代表j的后一个数</span></span><br><span class="line">	<span class="keyword">while</span> i &gt; <span class="number">0</span> <span class="keyword">and</span> A[i] &gt; key </span><br><span class="line">		A[i + <span class="number">1</span>] = A[i]</span><br><span class="line">		i = i - <span class="number">1</span></span><br><span class="line">	A[i + <span class="number">1</span>] = key     <span class="comment">//把A[j]的初始值赋给最后i前面的一个数</span></span><br></pre></td></tr></table></figure>
-<p>先讲一下伪代码，主要有两个作用，<strong>用最简的语言表示算法，让无论学过什么语言的人都能最快看懂</strong>。最简不用多说，没分号，没大括号，循环用缩进表示，颇有python内味，我在原书代码的基础上加了一些注释，相信要看懂更加容易了。如果实在看不懂伪代码，可以看这篇<a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/insertion-sort.html">博客</a>，里面用各种语言写了插入排序。</p>
-<p>我曾经做了一个作死的尝试，写了篇名叫<strong><em>不用代码讲插入排序</em></strong>的文章，后来写的冗长不说，意思也表达不清，索性作罢，用伪代码讲算法，虽然抽象，但是精确，简洁。</p>
-<p>让我们用一串数组，来描述这个代码的执行过程</p>
-<blockquote>
-<p>{1, 2, 3, 5, 4}</p>
-</blockquote>
-<p>要把这个数组变成{1, 2, 3, 4, 5}会经历什么过程呢？</p>
-<blockquote>
-<p>1, 2, 3, 5, 5      第一步</p>
-<p>1, 2, 3, 4, 5      第二步</p>
-</blockquote>
-<p>我们可以看到，其实，伪代码主要实现两种功能</p>
-<h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><p>在上面的例子中，要排序4这个数，前提是4前面的数必须有序，因为排序是从2个数到3个数到4个数……排序3个数的基础是前面的2个数已经排好了，所以不要用类似{2，1，3，5，4}这样的不标准数组来测试代码哦，同时伪代码的数组并非从0开始，而是从1开始，A[5]的元素有A[1,2,3,4,5]而不是A[0,1,2,3,4]。</p>
-<h3 id="移动"><a href="#移动" class="headerlink" title="移动"></a>移动</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="built_in">i</span> &gt; <span class="number">0</span> and A[<span class="built_in">i</span>] &gt; key</span><br><span class="line">	A[<span class="built_in">i</span> + <span class="number">1</span>] = A[<span class="built_in">i</span>]</span><br><span class="line">	<span class="built_in">i</span> = <span class="built_in">i</span> - <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>先看while中后面的那一部分，A[i]  &gt;  key，配合后面的i = i - 1，从j的后面一个数开始，从后往前跟A[j]比大小</p>
-<p>i &gt; 0是为了确定数组是否到头的，如果i自减到0，while循环就会停止</p>
-<p>看前面的文章可以知道，key就是要插入的那个值，假设数组中的第五个数也就是A[5]的值是key，A[4]，A[3]，都比key大，A[2]比key小，如数组{1,2,4,5,3}，那么请拿出一张草稿纸，试着执行一下循环里面的代码。执行完循环之后，会得到这样一个数组{1,2,2,4,5}，i最后自减完的值是2，如果细心的话，会发现数组中元素的位置已经移动了，比3大的4和5，已经从原来的位置往后移动了一位，这时，只需要把第3个位置的2换成3，数组的排序就完成了。</p>
-<h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><p>实现插入的代码只有一行</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A[i + <span class="number">1</span>] = <span class="type">key</span> </span><br></pre></td></tr></table></figure>
-<p>再用{1,2,4,5,3}举例子,我们进行完移动的操作后，得到的成果有{1，2，2，4，5}以及一个i值，i = 2</p>
-<p>这里的i为插入操作进行引导，执行完A[i] &gt; key和i的自减后，我们可以知道，i前面的值都比key值小，A[i] = A[i + 1]，只需要把A[i + 1]替换为原来的A[j]值，即key，排序就完成了，看似是插入，如果执行过一遍程序后，就知道其实应该叫做替换。</p>
-<h2 id="代码运算时间分析"><a href="#代码运算时间分析" class="headerlink" title="代码运算时间分析"></a>代码运算时间分析</h2><h3 id="该从哪个角度分析？"><a href="#该从哪个角度分析？" class="headerlink" title="该从哪个角度分析？"></a>该从哪个角度分析？</h3><p>运算时间受到的影响太多了，同样的代码，在超算和个人电脑上，运算时间肯定不同，个人电脑中，处理器型号，内存大小，也会导致执行的速度也不一样，但是，现在，我们仅从代码写法的角度来讨论运算时间的问题，而且是在最差的情况下的时间。</p>
-<h3 id="为什么是最差的情况"><a href="#为什么是最差的情况" class="headerlink" title="为什么是最差的情况"></a>为什么是最差的情况</h3><p>任何一个程序需要尽可能考虑差的情况，比如，一个排序数组的程序，在别人运行的时候，事先说明，<em>本程序排序完全颠倒的数组会很慢(类似{5，4，3，2，1})，其他时候都挺快的</em>，我觉得挺可笑的。一个程序设计的初衷就是要满足客户的各种合理需求的。记得在高考填志愿的时候，我不止一次抱怨填报志愿的网站做的差，好歹是全国人都会用的系统，为什么这么的“简朴”，后来经历过<a target="_blank" rel="noopener" href="http://cet.neea.edu.cn">英语六级报名</a>，<a target="_blank" rel="noopener" href="https://jlpt.neea.edu.cn">日语n2报名</a>后，发现其实做的网站都这样。后来仔细一想，其实全国的电脑中很大一部分是事业单位，高中机房中的老式电脑，不仅装的是XP系统，还装有360系，毒霸系的流氓软件，要是网页做的跟<a target="_blank" rel="noopener" href="https://www.apple.com.cn">苹果官网</a>一样，一些电脑真不一定打得开。这些官方报名网站，设计时就考虑了兼容性的情况，同样，我们的代码也要考虑最差的情况。</p>
-<h3 id="再看一次伪代码"><a href="#再看一次伪代码" class="headerlink" title="再看一次伪代码"></a>再看一次伪代码</h3><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">for</span> j = <span class="number">2</span> to A.length                a<span class="number">1</span> </span><br><span class="line">	<span class="attribute">key</span> = A[j]                   a<span class="number">2</span></span><br><span class="line">	<span class="attribute">i</span> = j - <span class="number">1</span>                    a<span class="number">3</span></span><br><span class="line">	<span class="attribute">while</span> i &gt; <span class="number">0</span> and A[i] &gt; key   a<span class="number">4</span></span><br><span class="line">		<span class="attribute">A</span>[i + <span class="number">1</span>] = A[i]      a<span class="number">5</span></span><br><span class="line">		<span class="attribute">i</span> = i - <span class="number">1</span>            a<span class="number">6</span></span><br><span class="line">	<span class="attribute">A</span>[i + <span class="number">1</span>] = key               a<span class="number">7</span></span><br></pre></td></tr></table></figure>
-<p>​                </p>
-<p>a1,a2……a7对应的每一行代码的执行时间</p>
-<p>在输入后，我们规定运算总时间是T，T的值应该为<br>T =n1a1 + n2a2 + ……n7a7</p>
-<p>根据前面，算法要考虑最坏的情况，所以，我们默认排序的数组都是像{5,4,3,2,1}这种完全相反的数组，我们就可以得到n元素数组排序的最长时间。</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">for</span> j = <span class="number">2</span> to A.length                  a<span class="number">1</span>		n</span><br><span class="line">	<span class="attribute">key</span> = A[j]    		       a<span class="number">2</span>		n - <span class="number">1</span></span><br><span class="line">	<span class="attribute">i</span> = j - <span class="number">1</span>     		       a<span class="number">3</span>		n - <span class="number">1</span></span><br><span class="line">	<span class="attribute">while</span> i &gt; <span class="number">0</span> and A[i] &gt; key     a<span class="number">4</span>		<span class="number">2</span> + …… + n  </span><br><span class="line">		<span class="attribute">A</span>[i + <span class="number">1</span>] = A[i]        a<span class="number">5</span>		<span class="number">1</span> + …… + n - <span class="number">1</span> </span><br><span class="line">		<span class="attribute">i</span> = i - <span class="number">1</span>              a<span class="number">6</span>		<span class="number">1</span> + …… + n - <span class="number">1</span></span><br><span class="line">	<span class="attribute">A</span>[i + <span class="number">1</span>] = key                 a<span class="number">7</span>		n - <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>后面的数代表执行次数，下面我来逐行讲解<br><strong>1</strong> 从2到n的遍历，看似应该执行n - 1次，但是循环的条件句最后还要判断一下，所以加一，如果这里不明白，可以看第4行代码的讲解<br><strong>2</strong> 每对应一个j值，都执行一次，共有n - 1个j值，执行你n - 1次<br><strong>3</strong> 与第2行一样<br><strong>4</strong> 由于是最差的情况，所以i每次都会自减到0，当i自减到0后，虽然循环内的代码不用执行，但是，是不是大于0还得比较一下，所以第4行代码是j为几就执行几次<br><strong>5</strong> 相比于第4行代码，每个j值都少一次i的值的判断，所以每轮执行次数都为j - 1，所以为从1到n - 1的和<br><strong>6</strong> 与第5行相同<br><strong>7</strong> 与第2行相同</p>
-
-      
-    </div>
-
-
-    <div>
-      
-    </div>
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://ltom01241010.github.io/2020/09/30/%E5%85%B3%E4%BA%8E%E8%BF%99%E4%B8%AA%E5%8D%9A%E5%AE%A2%E7%9A%84%E8%A7%84%E5%88%92/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gjmqrr57w8j30u00tyqbq.jpg">
-      <meta itemprop="name" content="ChineseSheep">
-      <meta itemprop="description" content="努力に勝る天才無し">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ChineseSheep">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/30/%E5%85%B3%E4%BA%8E%E8%BF%99%E4%B8%AA%E5%8D%9A%E5%AE%A2%E7%9A%84%E8%A7%84%E5%88%92/" class="post-title-link" itemprop="url">关于这个博客的规划</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-09-30 17:36:24" itemprop="dateCreated datePublished" datetime="2020-09-30T17:36:24+08:00">2020-09-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-10-17 18:37:02" itemprop="dateModified" datetime="2020-10-17T18:37:02+08:00">2020-10-17</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>这个博客创立的初衷是记录自己的学习和生活，后续每个星期会更新一篇长文，水品不一定高，但是我一定会竭尽全力把它写好，同时也会写一些生活趣事。如果每年的9月30号，打开博客，能看到自己一年的成长，也是件幸福的事。</p>
-<h3 id="为什么要自己建博客，不直接将博客发在类似csdn的博客论坛上？"><a href="#为什么要自己建博客，不直接将博客发在类似csdn的博客论坛上？" class="headerlink" title="为什么要自己建博客，不直接将博客发在类似csdn的博客论坛上？"></a>为什么要自己建博客，不直接将博客发在类似csdn的博客论坛上？</h3><p>有自己的博客，能给我一种在经营自己的家的感觉，如果把博客发在csdn，当然可以，但是总觉得少了点什么。这个博客是用hexo框架+next主题搭建github pages上的，博客是免费的，只有<a href="www.chinesesheep.com">www.chinesesheep.com</a> 这个域名花了我55元。虽然有点水，但是也能满足我的基本需求，如果搭建动态博客，需要的自己租服务器，而且也更难配置，我现在刚上大二，等以后学习了一些前端知识，再考虑优化一下这个博客或者再搭建一个动态博客。</p>
-<h3 id="一篇长文内容是什么？"><a href="#一篇长文内容是什么？" class="headerlink" title="一篇长文内容是什么？"></a>一篇长文内容是什么？</h3><p>以后每个月会有一个总计划，规划一下这个月要写哪些内容，我对自己的要求是写别人写的少的，同时比较重要的知识，会尽量写的详细，有趣一些。</p>
-<h3 id="这个博客的目标"><a href="#这个博客的目标" class="headerlink" title="这个博客的目标"></a>这个博客的目标</h3><p>就像我之前说的那样，没什么远大的理想，就像写日记一样，用来记录自己的成长，<em>君子耻其言而过其行</em>，决定了什么事，赶紧开始做吧！</p>
-
-      
-    </div>
-
-
-    <div>
-      
-    </div>
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
   
 
 
@@ -721,6 +391,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A6%E7%94%9F%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E8%A6%81%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="nav-number">2.</span> <span class="nav-text">学生管理系统要实现的功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E6%AE%B5%E6%BA%90%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">整段源码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#student-main-java%E4%B8%BB%E5%87%BD%E6%95%B0"><span class="nav-number">3.1.</span> <span class="nav-text">student_main.java主函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#student-java%E7%B1%BB"><span class="nav-number">3.2.</span> <span class="nav-text">student.java类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8IntelliJ%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%EF%BC%8Cset-%EF%BC%8Cget-%E5%87%BD%E6%95%B0"><span class="nav-number">3.3.</span> <span class="nav-text">如何利用IntelliJ自动生成构造函数，set()，get()函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mac%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-number">3.4.</span> <span class="nav-text">Mac快捷键</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%A6%E7%94%9F%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E5%8C%96%E7%95%8C%E9%9D%A2%E4%B9%A6%E5%86%99"><span class="nav-number">3.5.</span> <span class="nav-text">学生管理系统初始化界面书写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E5%AD%A6%E7%94%9F%E5%87%BD%E6%95%B0"><span class="nav-number">3.6.</span> <span class="nav-text">添加学生函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#isUsed%E5%87%BD%E6%95%B0"><span class="nav-number">3.6.1.</span> <span class="nav-text">isUsed函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E5%AD%A6%E7%94%9F"><span class="nav-number">3.6.2.</span> <span class="nav-text">添加学生</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E5%AD%A6%E7%94%9F%E5%87%BD%E6%95%B0"><span class="nav-number">3.7.</span> <span class="nav-text">删除学生函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E5%AD%A6%E7%94%9F%E5%87%BD%E6%95%B0"><span class="nav-number">3.8.</span> <span class="nav-text">修改学生函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%95%E7%A4%BA%E5%AD%A6%E7%94%9F%E5%87%BD%E6%95%B0"><span class="nav-number">3.9.</span> <span class="nav-text">展示学生函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8E%E8%AE%B0"><span class="nav-number">3.10.</span> <span class="nav-text">后记</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -840,59 +511,6 @@
   
 
   
-      
-
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = 'true';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
-    
 
   
 
