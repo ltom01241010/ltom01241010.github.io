@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://ltom01241010.github.io/2020/10/18/%E7%BB%88%E7%BB%93%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E5%85%B3%E7%B3%BB/</loc>
+    
+    <lastmod>2020-10-18</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://ltom01241010.github.io/2020/10/05/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F%E4%B8%8E%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/</loc>
     
     <lastmod>2020-10-17</lastmod>
@@ -53,7 +60,7 @@
 
   <url>
     <loc>http://ltom01241010.github.io/</loc>
-    <lastmod>2020-10-17</lastmod>
+    <lastmod>2020-10-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -61,28 +68,28 @@
   
   <url>
     <loc>http://ltom01241010.github.io/tags/%E4%B8%80%E4%BA%9B%E5%BA%9F%E8%AF%9D%F0%9F%99%83/</loc>
-    <lastmod>2020-10-17</lastmod>
+    <lastmod>2020-10-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://ltom01241010.github.io/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%F0%9F%93%96/</loc>
-    <lastmod>2020-10-17</lastmod>
+    <lastmod>2020-10-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://ltom01241010.github.io/tags/%E3%80%8A%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E3%80%8B%F0%9F%93%96/</loc>
-    <lastmod>2020-10-17</lastmod>
+    <lastmod>2020-10-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://ltom01241010.github.io/tags/java%E5%AE%9E%E6%88%98%F0%9F%8C%9A/</loc>
-    <lastmod>2020-10-17</lastmod>
+    <lastmod>2020-10-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -91,7 +98,7 @@
   
   <url>
     <loc>http://ltom01241010.github.io/categories/2020-10/</loc>
-    <lastmod>2020-10-17</lastmod>
+    <lastmod>2020-10-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
