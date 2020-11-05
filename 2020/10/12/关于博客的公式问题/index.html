@@ -46,7 +46,7 @@
 <meta property="og:locale">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gjml2gp9lrj302c02amx1.jpg">
 <meta property="article:published_time" content="2020-10-12T07:16:00.000Z">
-<meta property="article:modified_time" content="2020-10-17T10:37:02.140Z">
+<meta property="article:modified_time" content="2020-11-01T00:52:54.391Z">
 <meta property="article:author" content="ChineseSheep">
 <meta property="article:tag" content="一些废话🙃">
 <meta name="twitter:card" content="summary">
@@ -243,7 +243,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-10-17 18:37:02" itemprop="dateModified" datetime="2020-10-17T18:37:02+08:00">2020-10-17</time>
+                <time title="Modified: 2020-11-01 08:52:54" itemprop="dateModified" datetime="2020-11-01T08:52:54+08:00">2020-11-01</time>
               </span>
 
           
@@ -263,7 +263,7 @@
 <p>latex在hexo中直接写公式，渲染失败例</p>
 <p>$ a_{1}^n $</p>
 <p>在我的typora中这行代码是这样的</p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gjml2gp9lrj302c02amx1.jpg" style="zoom:50%;"></p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gjml2gp9lrj302c02amx1.jpg" style="zoom:50%;">
 <p>悲💩</p>
 
     </div>
@@ -373,14 +373,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -421,7 +421,7 @@
 </div>
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">所有博客共8.2k字</span>
+  <span class="post-count">所有博客共9.8k字</span>
 </div>
         
 
@@ -477,59 +477,6 @@
   
 
   
-      
-
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
-    
 
   
 
