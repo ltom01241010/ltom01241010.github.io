@@ -269,11 +269,13 @@ T =n1a1 + n2a2 + ……n7a7</p>
       </tags>
   </entry>
   <entry>
-    <title>图论总结</title>
+    <title>图论基础</title>
     <url>/2020/11/04/%E5%9B%BE%E8%AE%BA%E5%9F%BA%E7%A1%80/</url>
-    <content><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>这篇博客仅包含了图论中比较基础的部分，如果需要较为全面的学习图论，建议购买一本《离散数学》的参考书进行学习。</p>
-<h2 id="柯尼斯堡七桥问题-Seven-Bridges-of-Konigsberg"><a href="#柯尼斯堡七桥问题-Seven-Bridges-of-Konigsberg" class="headerlink" title="柯尼斯堡七桥问题(Seven Bridges of Königsberg)"></a>柯尼斯堡七桥问题(Seven Bridges of Königsberg)</h2><blockquote>
-<p>当时<a href="https://zh.wikipedia.org/wiki/東普魯士">东普鲁士</a><a href="https://zh.wikipedia.org/wiki/柯尼斯堡">柯尼斯堡</a>（今日<a href="https://zh.wikipedia.org/wiki/俄羅斯">俄罗斯</a><a href="https://zh.wikipedia.org/wiki/加里寧格勒">加里宁格勒</a>）市区跨<a href="https://zh.wikipedia.org/wiki/普列戈利亚河">普列戈利亚河</a>两岸，河中心有两个小岛。小岛与河的两岸有七条桥连接。在所有桥都只能走一遍的前提下，如何才能把这个地方所有的桥都走遍？</p>
+    <content><![CDATA[<h2 id="写在前面"><a class="header-anchor" href="#写在前面">¶</a>写在前面</h2>
+<p>这篇博客仅包含了图论中比较基础的部分，如果需要较为全面的学习图论，建议购买一本《离散数学》的参考书进行学习。</p>
+<h2 id="柯尼斯堡七桥问题-Seven-Bridges-of-Konigsberg"><a class="header-anchor" href="#柯尼斯堡七桥问题-Seven-Bridges-of-Konigsberg">¶</a>柯尼斯堡七桥问题(Seven Bridges of Königsberg)</h2>
+<blockquote>
+<p>当时<a href="https://zh.wikipedia.org/wiki/%E6%9D%B1%E6%99%AE%E9%AD%AF%E5%A3%AB">东普鲁士</a><a href="https://zh.wikipedia.org/wiki/%E6%9F%AF%E5%B0%BC%E6%96%AF%E5%A0%A1">柯尼斯堡</a>（今日<a href="https://zh.wikipedia.org/wiki/%E4%BF%84%E7%BE%85%E6%96%AF">俄罗斯</a><a href="https://zh.wikipedia.org/wiki/%E5%8A%A0%E9%87%8C%E5%AF%A7%E6%A0%BC%E5%8B%92">加里宁格勒</a>）市区跨<a href="https://zh.wikipedia.org/wiki/%E6%99%AE%E5%88%97%E6%88%88%E5%88%A9%E4%BA%9A%E6%B2%B3">普列戈利亚河</a>两岸，河中心有两个小岛。小岛与河的两岸有七条桥连接。在所有桥都只能走一遍的前提下，如何才能把这个地方所有的桥都走遍？</p>
 </blockquote>
 <p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkdc0l62pnj312a08mq8p.jpg" alt></p>
 <p>在完成对七桥问题的抽象化后，能够知道</p>
@@ -296,10 +298,12 @@ T =n1a1 + n2a2 + ……n7a7</p>
 <blockquote>
 <p>如果一个连通图里面与奇数条边相连的点个数不超过2，那这个图一定能够一笔画</p>
 </blockquote>
-<h2 id="图的定义"><a href="#图的定义" class="headerlink" title="图的定义"></a>图的定义</h2><p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkddk9egurj31mq01aq3u.jpg" style="zoom:500%;"></p>
+<h2 id="图的定义"><a class="header-anchor" href="#图的定义">¶</a>图的定义</h2>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkddk9egurj31mq01aq3u.jpg" style="zoom:500%;">
 <p>可以说，一个图里面重要的有2点，<strong>有哪几个点，有哪几条边</strong>，至于点在什么位置，边的长度是多少，这些都不重要</p>
 <p>在图中，边可以被分为无向边和有向边，有向边是单方向的，而无向边是双向的</p>
-<h2 id="简单图"><a href="#简单图" class="headerlink" title="简单图"></a>简单图</h2><p>首先来说，简单图有三个要求</p>
+<h2 id="简单图"><a class="header-anchor" href="#简单图">¶</a>简单图</h2>
+<p>首先来说，简单图有三个要求</p>
 <ol>
 <li>没有有向边</li>
 <li>没有形成环</li>
@@ -307,49 +311,54 @@ T =n1a1 + n2a2 + ……n7a7</p>
 </ol>
 <p>那么，如果一个图是简单图，那么它的边可以被表示为以两端点为元素的集合</p>
 <p>如图</p>
-<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkddxglbv1j30ho0acjsc.jpg" style="zoom:30%;"></p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkddxglbv1j30ho0acjsc.jpg" style="zoom:30%;">
 <p><em>一个有n个点的简单图，能够形成多少种不同的边？</em></p>
 <blockquote>
 <p>首先，由于简单图里面是无向边，而且简单图没有环，所以这是一个排序问题，相当于从有n个球的箱子里取出两个</p>
 </blockquote>
-<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkdejrns1jj309e03ca9v.jpg" style="zoom:50%;"></p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkdejrns1jj309e03ca9v.jpg" style="zoom:50%;">
 <p><em>一个有n个点的简单图，一共有多少种不同的图？</em></p>
 <blockquote>
 <p>一个图由边和点构成，点有n个已经确定，所以能组成多少种图，与边有多少种有很大的关系，根据上一问，可以得到不同边的集合的子集有</p>
 </blockquote>
-<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkdeqcc7anj304502n0si.jpg" style="zoom:70%;"></p>
-<h2 id="有向图"><a href="#有向图" class="headerlink" title="有向图"></a>有向图</h2><p>有向图只有<strong>一个</strong>要求</p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkdeqcc7anj304502n0si.jpg" style="zoom:70%;">
+<h2 id="有向图"><a class="header-anchor" href="#有向图">¶</a>有向图</h2>
+<p>有向图只有<strong>一个</strong>要求</p>
 <p>所有的边都是有向边</p>
 <p>环和多重边，有向图都允许</p>
 <p><em>一个有n个点的有向图，能够形成多少种不同的边？</em></p>
 <blockquote>
 <p>有向图跟简单图相比，无非是多了一个方向问题，那这题不就简单了吗？</p>
 </blockquote>
-<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkdex6c5bwj309002emwy.jpg" style="zoom:67%;"></p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkdex6c5bwj309002emwy.jpg" style="zoom:67%;">
 <blockquote>
 <p><strong>但是</strong>，我们常常会忽视的一点是，有向图能够有环，所以，<strong>一个点自己形成一条边的可能是有的</strong>，所以正解应该是</p>
 </blockquote>
-<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkdf0raiolj3070025we9.jpg" style="zoom:67%;"></p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkdf0raiolj3070025we9.jpg" style="zoom:67%;">
 <p><em>一个有n个点的简单图，一共有多少种不同的图？</em></p>
 <blockquote>
 <p>这个就很简单了，跟之前的问题类似</p>
 </blockquote>
-<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkdf3jyvz9j302h02igld.jpg" style="zoom:67%;"></p>
-<h2 id="度"><a href="#度" class="headerlink" title="度"></a>度</h2><h3 id="度的定义"><a href="#度的定义" class="headerlink" title="度的定义"></a>度的定义</h3><blockquote>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkdf3jyvz9j302h02igld.jpg" style="zoom:67%;">
+<h2 id="度"><a class="header-anchor" href="#度">¶</a>度</h2>
+<h3 id="度的定义"><a class="header-anchor" href="#度的定义">¶</a>度的定义</h3>
+<blockquote>
 <p>顶点度计算的是在放大镜下看时似乎伸出的边数</p>
 </blockquote>
 <p>比如有这样一个图，图中标为2的点的度数是多少？</p>
-<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkek28rcdnj30a606s3yn.jpg" style="zoom:50%;"></p>
-<p>想象一下，如果拿一个放大镜去看2，会得到一张什么样的图像<br><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkek2r4kccj3078074wen.jpg" style="zoom:67%;"></p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkek28rcdnj30a606s3yn.jpg" style="zoom:50%;">
+<p>想象一下，如果拿一个放大镜去看2，会得到一张什么样的图像<br>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkek2r4kccj3078074wen.jpg" style="zoom:67%;"></p>
 <p>这个点的度数是7</p>
 <p>从这个问题，可以知道，一个点上环的度数不算1，而算2</p>
-<h3 id="入度和出度"><a href="#入度和出度" class="headerlink" title="入度和出度"></a>入度和出度</h3><p>如果是一张有向图呢，度该如何计算？</p>
+<h3 id="入度和出度"><a class="header-anchor" href="#入度和出度">¶</a>入度和出度</h3>
+<p>如果是一张有向图呢，度该如何计算？</p>
 <blockquote>
 <p>入度(in-degree)：指向点的边的个数</p>
 <p>出度(out-degree)：从点指出的边的个数</p>
 </blockquote>
 <p>下图中，所有的点的<strong>入度之和</strong>和<strong>出度之和</strong>分别是多少？</p>
-<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkekbod33ej30ae06s3ys.jpg" style="zoom:67%;"></p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkekbod33ej30ae06s3ys.jpg" style="zoom:67%;">
 <p>很简单，只需要把每个点的入度和出度算出来，然后再分别加到一起</p>
 <p>可以得到</p>
 <blockquote>
@@ -358,20 +367,23 @@ T =n1a1 + n2a2 + ……n7a7</p>
 </blockquote>
 <p><strong>一个图中，入度和出度一定是相等的</strong></p>
 <p>很简单，一个有向边，一定代表一个点指向一个点，代表一个点入度加一点同时会有一个点的出度加一，环很特殊，严格来说，环既可以算有向边又可以算无向边，但是无论是有向边还是无向边，都不会影响这个结论成立</p>
-<h3 id="度的作用"><a href="#度的作用" class="headerlink" title="度的作用"></a>度的作用</h3><p>一个概念的引出，一定有其作用，度的作用就是可以用度来求边的个数</p>
-<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkekn5kbmsj30ae02ujre.jpg" style="zoom:67%;"></p>
+<h3 id="度的作用"><a class="header-anchor" href="#度的作用">¶</a>度的作用</h3>
+<p>一个概念的引出，一定有其作用，度的作用就是可以用度来求边的个数</p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkekn5kbmsj30ae02ujre.jpg" style="zoom:67%;">
 <p><strong>一个图的总边数，等于一个图的点的度数只和</strong></p>
 <p>但是，在有向图中，总度数被入度和出度平分了，所以，有可以推导出</p>
-<p><img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkekpbjen8j30d203awei.jpg" style="zoom:67%;"></p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkekpbjen8j30d203awei.jpg" style="zoom:67%;">
 <p><strong>有向图的总边数等于所有点的入度之和或者是出度之和</strong></p>
-<h3 id="度数在实际问题中的应用"><a href="#度数在实际问题中的应用" class="headerlink" title="度数在实际问题中的应用"></a>度数在实际问题中的应用</h3><blockquote>
+<h3 id="度数在实际问题中的应用"><a class="header-anchor" href="#度数在实际问题中的应用">¶</a>度数在实际问题中的应用</h3>
+<blockquote>
 <p>朋友问题：</p>
 <p>选取五个人，有没有可能，这五个人只认识其中的另外三个人？</p>
 </blockquote>
 <p>如果学习了度的知识的话，这个问题就迎刃而解</p>
 <p>想象一个5个人作为顶点的简单图，边是表示朋友关系的无向边。每个人拥有的朋友数量就是这个人的度数。</p>
 <p>根据题设条件，每个人仅仅有三个朋友，所以每个点的度数就是3，这个图的总度数就是15，很显然，度只能是偶数（必须能整除），图才可能存在，所以，这个问题是不可能成立的</p>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>对于图论来说，这篇博客只能说是垫脚石，简单介绍了一下单个的图，并没有涉及图与图之间的关系，11月份学校考试较多，关于图与图之间的关系，等我有空一定完成，感兴趣的话，可以收藏我的博客网站哦🌝</p>
+<h2 id="结语"><a class="header-anchor" href="#结语">¶</a>结语</h2>
+<p>对于图论来说，这篇博客只能说是垫脚石，简单介绍了一下单个的图，并没有涉及图与图之间的关系，11月份学校考试较多，关于图与图之间的关系，等我有空一定完成，感兴趣的话，可以收藏我的博客网站哦🌝</p>
 ]]></content>
       <categories>
         <category>2020/11</category>
