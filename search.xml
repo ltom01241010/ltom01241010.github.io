@@ -269,7 +269,7 @@ T =n1a1 + n2a2 + ……n7a7</p>
       </tags>
   </entry>
   <entry>
-    <title>图论基础</title>
+    <title>Basics for Graphs</title>
     <url>/2020/11/04/%E5%9B%BE%E8%AE%BA%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<h2 id="写在前面"><a class="header-anchor" href="#写在前面">¶</a>写在前面</h2>
 <p>这篇博客仅包含了图论中比较基础的部分，如果需要较为全面的学习图论，建议购买一本《离散数学》的参考书进行学习。</p>
