@@ -392,4 +392,108 @@ T =n1a1 + n2a2 + ……n7a7</p>
         <tag>离散数学📖</tag>
       </tags>
   </entry>
+  <entry>
+    <title>tree</title>
+    <url>/2020/11/14/tree/</url>
+    <content><![CDATA[<h2 id="为什么要学习树？"><a class="header-anchor" href="#为什么要学习树？">¶</a>为什么要学习树？</h2>
+<p>相信大家都听说过一些带<strong>树</strong>的名字，比如二叉搜索树，最小生成树……，这些都是以离散数学中的最简单的<strong>树</strong>为基础的。把树学习好，也能给将来数据结构的学习打下了坚实的基础。</p>
+<h2 id="什么是树？"><a class="header-anchor" href="#什么是树？">¶</a>什么是树？</h2>
+<h3 id="定义1"><a class="header-anchor" href="#定义1">¶</a>定义1</h3>
+<blockquote>
+<p>1.点与点没有成环</p>
+<p>2.互相连通</p>
+<p>3.简单图</p>
+</blockquote>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkoq8wvlzpj30ty09yjts.jpg" style="zoom:67%;">
+<p>如果无法理解的话，不妨拿生活中的树来举例子</p>
+<p>一棵树，首先枝条不能长成环</p>
+<p>其次，不能说一棵树在东边长一部分，在西边长一部分，这样也不能叫做一棵树</p>
+<h3 id="定义2"><a class="header-anchor" href="#定义2">¶</a>定义2</h3>
+<blockquote>
+<p>图中的任意两点之间有且只有一条简单路，叫那么这个图就是树</p>
+</blockquote>
+<p>这个也很好想象，如果一个图里面点与点已经形成了一个环，那么肯定存在两点，能够用不止一条简单路来连接</p>
+<h2 id="叶"><a class="header-anchor" href="#叶">¶</a>叶</h2>
+<p>跟生活中的树一样，图中的树也有叶子</p>
+<blockquote>
+<p>在树中度数为1的点称为叶</p>
+</blockquote>
+<p><strong>一个树图中一定会有叶</strong></p>
+<p>实际上，在图论中的树对叶的定义更加的宽泛</p>
+<p>例如，现实生活中的树，到冬天就没有叶子了</p>
+<p>但是，在图论中，如果一个树没有叶子，那它必须要成环，但这又与树的定义相违背了，所以一棵树一定会有叶</p>
+<h2 id="树的边数"><a class="header-anchor" href="#树的边数">¶</a>树的边数</h2>
+<p>在树中，自环，多重边，以及点与点之间形成环都已经被禁止了</p>
+<p>所以，树具有了额外的一条的性质</p>
+<blockquote>
+<p>有n个点的树，一定有n-1条边</p>
+</blockquote>
+<h2 id="最小生成树"><a class="header-anchor" href="#最小生成树">¶</a>最小生成树</h2>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkoqqage3rj30iq0cuwg5.jpg" style="zoom:67%;">
+<p>所谓生成树，就是要把原本不是树的图，删成树</p>
+<p>这里的最小，首先要确定是哪方面最小</p>
+<p>比如想要最便宜的生成方法，和想要看到最好风景的生成方法肯定不一样</p>
+<p>假如现在甲方的要求是最便宜的生成方法，那么，我们首先对道路成本进行评估</p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkoqx91bq0j30ka0du763.jpg" style="zoom:67%;">
+<p>得到不同道路的分数后，就可以开始生成最小树了</p>
+<h2 id="Prim’s-algorithm"><a class="header-anchor" href="#Prim’s-algorithm">¶</a>Prim’s algorithm</h2>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkoqzh8x6uj30tc0hu0up.jpg" style="zoom:67%;">
+<p>用一句话概括这个算法，就是：<strong>走一步看一步</strong></p>
+<p>先随便选择一个分值最小的边，连完后，在从相邻的边中选择一条分值低的，按照这个规则进行迭代，直到把所有点连接上为止</p>
+<h2 id="Kruskal’s-algorithm"><a class="header-anchor" href="#Kruskal’s-algorithm">¶</a>Kruskal’s algorithm</h2>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkor4dybmtj30t40h040i.jpg" style="zoom:67%;">
+<p>用一句话概括这个算法，就是<strong>先把分数低的连上</strong></p>
+<p>先按照分数把边进行分类，先连接分数低的边，按照这个规则进行迭代，直到所有点都被连接为止</p>
+<h2 id="两种算法的关系"><a class="header-anchor" href="#两种算法的关系">¶</a>两种算法的关系</h2>
+<p>如果最小生成树只有一种，那么无论采取什么算法，最后得到的最小生成树都是一样的</p>
+<p>但是如果最小生成树不只有一种，那么得到了最小生成树可能不一样，但是从边的总分数来说，生成的树肯定是一样的</p>
+<h2 id="有向树"><a class="header-anchor" href="#有向树">¶</a>有向树</h2>
+<blockquote>
+<p>如果一个有向图在不考虑边的方向时是一棵树，那么，这个有向图称为有向树</p>
+</blockquote>
+<p>简单来说，就是把一个有向图的边都换成无向边后，是一棵树，那么这个有向图称为有向树</p>
+<h2 id="根树"><a class="header-anchor" href="#根树">¶</a>根树</h2>
+<blockquote>
+<p>一棵有向树，如果恰好有一个结点的入度为0，其余所有结点的入度都为1，则称这棵有向树为根树</p>
+</blockquote>
+<p>其中，入度为0的那个点称为根</p>
+<h2 id="级数和高度"><a class="header-anchor" href="#级数和高度">¶</a>级数和高度</h2>
+<p><strong>级数</strong>：从一个点到根的路的长度</p>
+<p>根据级数的定义，我们可以知道，由于根和自己的长度是0，所以根的级数是0</p>
+<p><strong>高度</strong>：一个根树中的最大级数</p>
+<p>比如一个有九个点的根树，它的最大高度就是8，这个时候，这个树就是一根杆子</p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkos0wdmpij30fo06yjr9.jpg" style="zoom:67%;">
+<p>画的有点抽象💩</p>
+<h2 id="二叉树"><a class="header-anchor" href="#二叉树">¶</a>二叉树</h2>
+<p>顾名思义，指的是一个枝最多分叉两次</p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkos3ix2voj306q0bg3z2.jpg" style="zoom:50%;">
+<p>类似这种，需要注意的是</p>
+<p><strong>二叉树带有方向</strong></p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkos4nd77wj30nw0cs3zw.jpg" style="zoom:50%;">
+<p>至于为什么，到后面就会明白</p>
+<h2 id="二叉搜索树"><a class="header-anchor" href="#二叉搜索树">¶</a>二叉搜索树</h2>
+<p>比如我们要做一个小字典，能够实现的功能是可以搜索单词</p>
+<p>有这样几个单词</p>
+<blockquote>
+<p>math, computer, power, north, zoo, dentist, book.</p>
+</blockquote>
+<p>该怎么实现这样一个搜索树呢？</p>
+<p>让我们先选择一个参考单词math</p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkos8bx9msj30f207sjrd.jpg" style="zoom:50%;">
+<p>画出math后，下一个是computer，由于首字母c在m前面，所以把computer排到math的左分支</p>
+<p>再下一个是power，由于p比m靠后，所以把power排到math的右分支，math排满后，就可以排子节点computer和power，比如north，n比m靠后，但是比p靠前，所以把north放到power的左分支，按照这个规则进行迭代，就可以得到最终结果</p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkoscy5h56j30om0bqjsf.jpg" style="zoom:50%;">
+<p>这样，一个简单的二叉搜索树就完成了，芜湖✈️！</p>
+<p>这也解决了前面的问题，再看下面这张图，一定能够恍然大悟</p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwly1gkos4nd77wj30nw0cs3zw.jpg" style="zoom:50%;">
+<h2 id="最后"><a class="header-anchor" href="#最后">¶</a>最后</h2>
+<p>今天补上树的部分，算是完成了创博客网站时周更的承诺，还有几天就要考离散了，希望我能没事🙏</p>
+]]></content>
+      <categories>
+        <category>2020/11</category>
+      </categories>
+      <tags>
+        <tag>离散数学📖</tag>
+      </tags>
+  </entry>
 </search>
