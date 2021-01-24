@@ -659,4 +659,515 @@ T =n1a1 + n2a2 + ……n7a7</p>
         <tag>操作系统💻</tag>
       </tags>
   </entry>
+  <entry>
+    <title>database</title>
+    <url>/2021/01/24/database/</url>
+    <content><![CDATA[<h2 id="一个难题"><a class="header-anchor" href="#一个难题">¶</a>一个难题</h2>
+<p>其实本节的内容，主要围绕着一个问题展开:</p>
+<ul>
+<li>是把导师和部门放在一个表inst_dept中，还是放在分开放在两个表instructor,department中？</li>
+</ul>
+<p>让我们分别看看两种方案吧</p>
+<hr>
+<h3 id="方案一"><a class="header-anchor" href="#方案一">¶</a>方案一</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">ID</th>
+<th style="text-align:center">name</th>
+<th style="text-align:center">salary</th>
+<th style="text-align:center">dept_name</th>
+<th style="text-align:center">building</th>
+<th style="text-align:center">budget</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">22222</td>
+<td style="text-align:center">Einstein</td>
+<td style="text-align:center">95000</td>
+<td style="text-align:center">Physics</td>
+<td style="text-align:center">Waston</td>
+<td style="text-align:center">70000</td>
+</tr>
+<tr>
+<td style="text-align:center">12121</td>
+<td style="text-align:center">Wu</td>
+<td style="text-align:center">90000</td>
+<td style="text-align:center">Finance</td>
+<td style="text-align:center">Painter</td>
+<td style="text-align:center">120000</td>
+</tr>
+<tr>
+<td style="text-align:center">45565</td>
+<td style="text-align:center">Katz</td>
+<td style="text-align:center">75000</td>
+<td style="text-align:center">Comp.Sci</td>
+<td style="text-align:center">Taylor</td>
+<td style="text-align:center">10000</td>
+</tr>
+<tr>
+<td style="text-align:center">10101</td>
+<td style="text-align:center">Srinivasan</td>
+<td style="text-align:center">65000</td>
+<td style="text-align:center">Comp.Sci</td>
+<td style="text-align:center">Taylor</td>
+<td style="text-align:center">10000</td>
+</tr>
+<tr>
+<td style="text-align:center">83821</td>
+<td style="text-align:center">Brandt</td>
+<td style="text-align:center">92000</td>
+<td style="text-align:center">Comp.Sci</td>
+<td style="text-align:center">Taylor</td>
+<td style="text-align:center">10000</td>
+</tr>
+</tbody>
+</table>
+<center>inst_dept</center>
+<p>一眼看去，这个表非常的直观，通过一个表就能了解到每个老师的所有信息。而且，在查询时不需要使用join语句，对程序员也十分友好。这种方案看似非常不错，但却有两个非常严重的缺点。</p>
+<blockquote>
+<p>1.先有老师再有系</p>
+</blockquote>
+<p>如果大工创建了一个干饭系，但是由于这个系没有前景，迟迟没有老师愿意加入。我们没办法把干饭系加入表中，因为每个记录在表中的系，都是有老师的。没有老师，就不能录入表格，在数据库中，要避免使用空值，所以老师那里录入空值也不太好。</p>
+<blockquote>
+<p>2.有很多废信息</p>
+</blockquote>
+<p>假如大工有10000名教职工，却只有30个系，假设我们正在看有10000名教职工信息的表格</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">ID</th>
+<th style="text-align:center">name</th>
+<th style="text-align:center">salary</th>
+<th style="text-align:center">dept_name</th>
+<th style="text-align:center">building</th>
+<th style="text-align:center">budget</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">小陈</td>
+<td style="text-align:center">95000</td>
+<td style="text-align:center">软国</td>
+<td style="text-align:center">信息楼</td>
+<td style="text-align:center">62000</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">小王</td>
+<td style="text-align:center">90000</td>
+<td style="text-align:center">软国</td>
+<td style="text-align:center">信息楼</td>
+<td style="text-align:center">62000</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">小夏</td>
+<td style="text-align:center">75000</td>
+<td style="text-align:center">软国</td>
+<td style="text-align:center">信息楼</td>
+<td style="text-align:center">62000</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">小薛</td>
+<td style="text-align:center">65000</td>
+<td style="text-align:center">软国</td>
+<td style="text-align:center">信息楼</td>
+<td style="text-align:center">62000</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">小张</td>
+<td style="text-align:center">92000</td>
+<td style="text-align:center">软国</td>
+<td style="text-align:center">信息楼</td>
+<td style="text-align:center">62000</td>
+</tr>
+<tr>
+<td style="text-align:center">……</td>
+<td style="text-align:center">……</td>
+<td style="text-align:center">……</td>
+<td style="text-align:center">软国</td>
+<td style="text-align:center">信息楼</td>
+<td style="text-align:center">62000</td>
+</tr>
+</tbody>
+</table>
+<center>inst_dept</center>
+<p>当我们看完软国的所有老师后，我们就会想，为什么不单独把软国的办公地点和预算列出来呢，在每个老师后面都重复一遍是不是没啥必要😅</p>
+<p>实际上，把每个老师后面都加上每个系的办公地点和预算是对内存空间的浪费。特别是有10000名教职工的时候，每一排的细微错误，在✖️10000之后，都会被无限放大。</p>
+<hr>
+<h3 id="方案二"><a class="header-anchor" href="#方案二">¶</a>方案二</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">ID</th>
+<th>name</th>
+<th>dept_name</th>
+<th>salary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">22222</td>
+<td>Einstein</td>
+<td>Physics</td>
+<td>95000</td>
+</tr>
+<tr>
+<td style="text-align:left">12121</td>
+<td>Wu</td>
+<td>Finance</td>
+<td>90000</td>
+</tr>
+<tr>
+<td style="text-align:left">45565</td>
+<td>Katz</td>
+<td>Comp.Sci</td>
+<td>75000</td>
+</tr>
+<tr>
+<td style="text-align:left">10101</td>
+<td>Srinivasan</td>
+<td>Comp.Sci</td>
+<td>65000</td>
+</tr>
+<tr>
+<td style="text-align:left">83821</td>
+<td>Brandt</td>
+<td>Comp.Sci</td>
+<td>92000</td>
+</tr>
+</tbody>
+</table>
+<center>instructor</center>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">dept_name</th>
+<th style="text-align:center">building</th>
+<th style="text-align:center">budget</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Physics</td>
+<td style="text-align:center">Watson</td>
+<td style="text-align:center">70000</td>
+</tr>
+<tr>
+<td style="text-align:center">Finance</td>
+<td style="text-align:center">Painter</td>
+<td style="text-align:center">120000</td>
+</tr>
+<tr>
+<td style="text-align:center">Comp.Sci</td>
+<td style="text-align:center">Taylor</td>
+<td style="text-align:center">10000</td>
+</tr>
+</tbody>
+</table>
+<center>department</center>
+<p>方案二就好很多了，如果录入10000条数据，也不会浪费空间，需要查询老师系的办公地点时，只需要将两个表连接后再查询就行了。</p>
+<p>所以我们得出结论</p>
+<ul>
+<li>分开记录比合起来记录要好！❌</li>
+</ul>
+<p>这个结论是不严谨的，因为没有考虑分解有损的情况</p>
+<hr>
+<h3 id="有损分解"><a class="header-anchor" href="#有损分解">¶</a>有损分解</h3>
+<p>故名思义，有损分解就是把大表分解成小表之后，会损失原始数据的分解</p>
+<p>让我们来看一个例子</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">ID</th>
+<th style="text-align:center">name</th>
+<th style="text-align:center">street</th>
+<th style="text-align:center">city</th>
+<th style="text-align:center">salary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">57766</td>
+<td style="text-align:center">Kim</td>
+<td style="text-align:center">Main</td>
+<td style="text-align:center">Perryridge</td>
+<td style="text-align:center">75000</td>
+</tr>
+<tr>
+<td style="text-align:center">98776</td>
+<td style="text-align:center">Kim</td>
+<td style="text-align:center">North</td>
+<td style="text-align:center">Hampton</td>
+<td style="text-align:center">67000</td>
+</tr>
+</tbody>
+</table>
+<center>employee</center>
+<p>在分解之后，两个Kim会出现混淆的现象</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>57766</td>
+<td>Kim</td>
+</tr>
+<tr>
+<td>98776</td>
+<td>Kim</td>
+</tr>
+</tbody>
+</table>
+<p>。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>street</th>
+<th>city</th>
+<th>salary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kim</td>
+<td>Main</td>
+<td>Perryridge</td>
+<td>75000</td>
+</tr>
+<tr>
+<td>Kim</td>
+<td>North</td>
+<td>Hampton</td>
+<td>67000</td>
+</tr>
+</tbody>
+</table>
+<p>如果要把两个表格合在一起，会无法分辨表一中的ID对应表二中的哪个Kim</p>
+<h3 id="无损分解"><a class="header-anchor" href="#无损分解">¶</a>无损分解</h3>
+<p>如果分解之后再合成，能够得到跟原来一样的表(没有损失信息)，就叫做无损分解</p>
+<hr>
+<h3 id="第一范式与原子域"><a class="header-anchor" href="#第一范式与原子域">¶</a>第一范式与原子域</h3>
+<ul>
+<li>原子域：具有原子性的域。</li>
+<li>第一范式：在关系模型中，所有的域都应该是原子性的，即数据库表的每一列都是不可分割的原子数据项，而不能是集合，数组，记录等非原子数据项。</li>
+</ul>
+<p>满足第一范式是关系模型的基本要求，要是不满足第一范式，就不能被称作是关系模型。</p>
+<p>例如三围这个属性，是胸围，腰围，臀围的集合，如果一个表中包含了三围这个属性，必须要拆分成胸围，腰围，臀围后才能满足第一范式。</p>
+<hr>
+<h2 id="使用函数依赖进行分解"><a class="header-anchor" href="#使用函数依赖进行分解">¶</a>使用函数依赖进行分解</h2>
+<h3 id="表示方法"><a class="header-anchor" href="#表示方法">¶</a>表示方法</h3>
+<p>关系模式是一个属性集，为了区分属性集是不是关系模式，用三种不同的方法表示属性集</p>
+<ul>
+<li>α :表示属性集，但是不知道属性集是不是关系模式</li>
+<li>r®:表示属性集，这里的属性集特指关系模式，r代表关系的名字，不在意名字的话，可以省掉r，只写R</li>
+</ul>
+<p>超码是一个或多个属性的集合，可以在表中区分不同的实体，某集合只要包含了超码，也会变成超码，所以说超码的<a href="https://baike.baidu.com/item/%E8%B6%85%E9%9B%86">超集</a>也是超码</p>
+<ul>
+<li>K:表示属性集，这里的属性集特指超码</li>
+</ul>
+<hr>
+<h3 id="函数依赖"><a class="header-anchor" href="#函数依赖">¶</a>函数依赖</h3>
+<blockquote>
+<p>给定r®上的一个实例，我们说这个实例满足函数依赖X→Y的条件是：对实例中所有的元组对t1和t2，若t1[X]=t2[X]，若t1[X] = t2[X]，则t1[Y] = t2[Y]</p>
+</blockquote>
+<p>通俗来讲就是：</p>
+<blockquote>
+<p>设X,Y是关系R的两个属性集合，当任何时刻R中的任意两个元组中的X属性值相同时，则它们的Y属性值也相同，则称X函数决定Y，或Y函数依赖于X。</p>
+</blockquote>
+<ul>
+<li>例1：A→C在下表中是否成立？C→A呢？</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a1</td>
+<td>b1</td>
+<td>c1</td>
+</tr>
+<tr>
+<td>a1</td>
+<td>b2</td>
+<td>c1</td>
+</tr>
+<tr>
+<td>a2</td>
+<td>b2</td>
+<td>c2</td>
+</tr>
+<tr>
+<td>a2</td>
+<td>b3</td>
+<td>c2</td>
+</tr>
+<tr>
+<td>a3</td>
+<td>b3</td>
+<td>c2</td>
+</tr>
+</tbody>
+</table>
+<p>写这种题要记住一句关键的话，<strong>一个X仅有一个Y对应</strong>，跟判段是否为函数十分相似</p>
+<p>可以看到，a1对应c1，a2对应c2，a3也对应c3，A中的每一个值都仅有唯一的C值对应，所以A→C成立</p>
+<p>但是在C中，c2对应a2和a3，所以C→A不成立</p>
+<ul>
+<li>例2:在关系模式R中，K→R是否成立？</li>
+</ul>
+<p>根据超码的定义，如果两个元组在超码上的值相同，那么这两个元组一定是同一个，所以，K→R成立</p>
+<hr>
+<h3 id="平凡函数依赖和非平凡函数依赖"><a class="header-anchor" href="#平凡函数依赖和非平凡函数依赖">¶</a>平凡函数依赖和非平凡函数依赖</h3>
+<blockquote>
+<p>若X→Y且X不包含Y,则称X→Y为非平凡函数依赖；否则若X包含Y，则必有X→Y,称此X→Y为平凡函数依赖.</p>
+</blockquote>
+<p>常见的平凡函数依赖有</p>
+<ul>
+<li>A→A</li>
+<li>AB→A</li>
+</ul>
+<hr>
+<h3 id="Armstrong公理"><a class="header-anchor" href="#Armstrong公理">¶</a>Armstrong公理</h3>
+<blockquote>
+<p>自反律：若X为一属性集且Y⊆X，则X→Y成立</p>
+<p>增补律：若X→Y成立且Z为一属性集，则ZX→ZY成立</p>
+<p>传递率：若X→Y和Y→Z成立，则X→成立</p>
+</blockquote>
+<p>公理推论：</p>
+<blockquote>
+<p>合并律：若X→Y和X→Z成立，则X→YZ成立</p>
+<p>分解律：若X→ZY成立，则X→Y和X→Z成立</p>
+<p>伪传递律：若X→Y和ZY→M成立，XZ→M成立</p>
+</blockquote>
+<p>让我们通过公理来证明一下推论</p>
+<ul>
+<li>合并律：</li>
+</ul>
+<p>因X→Y ，所以X→XY （增广律 XX→XY即X→XY）</p>
+<p>因X→Z ，所以XY→YZ （增广律）</p>
+<p>因X→XY，XY→YZ(增广律)</p>
+<p>故X→YZ （传递律）</p>
+<ul>
+<li>分解律：</li>
+</ul>
+<p>因Y⊆ZY，所以ZY→Y(增广律)</p>
+<p>因X→ZY，所以X→Y(传递律)</p>
+<p>因Z⊆ZY，所以ZY→Z(增广律)</p>
+<p>因X→ZY，所以Z→Y(传递律)</p>
+<ul>
+<li>伪传递律：</li>
+</ul>
+<p>因X→Y ，所以WX→WY （增广律）</p>
+<p>因WY→Z ，所以XW→Z （传递律）</p>
+<hr>
+<h3 id="依赖函数集F及其闭包"><a class="header-anchor" href="#依赖函数集F及其闭包">¶</a>依赖函数集F及其闭包</h3>
+<blockquote>
+<p>用通俗的话来讲，F就是给出的依赖关系集，但是给出的依赖集一般给的很简单，往往可以进一步推导出别的依赖关系，把所有推导出来的依赖关系加上原来给出的依赖关系合在一起，就可以得到F的闭包—F+</p>
+</blockquote>
+<p>我们不妨来看一道例题</p>
+<ul>
+<li>已知关系模式R(ABC)，F={A→C,B→C}，求F+</li>
+</ul>
+<p>这题的关键是，用{A→C,B→C}推导出所有可以推导出的依赖关系</p>
+<p>这个过程一般很庞大，我们就只推一部分，主要是为了更好的理解F+</p>
+<p>现在已知A→C，我们就可以推出AC→C(增广律)，我们把AC→C加入F+中</p>
+<p>A→A在F中也没有，也可以加入到F+中</p>
+<p>当然，F+远不止这些，因为还有很多依赖关系没有被推导出来</p>
+<hr>
+<h2 id="范式"><a class="header-anchor" href="#范式">¶</a>范式</h2>
+<h3 id="第一范式"><a class="header-anchor" href="#第一范式">¶</a>第一范式</h3>
+<p>在前面已经和和原子域一起介绍过了，简单来说，第一范式是最低要求，后面的BC范式和第三范式都是建立在在第一范式的基础上的</p>
+<hr>
+<h3 id="BC范式-BCNF"><a class="header-anchor" href="#BC范式-BCNF">¶</a>BC范式(BCNF)</h3>
+<blockquote>
+<p>对F+中的形如X→Y的函数依赖，必须满足下面的两点之一</p>
+<p>1.X→Y是平凡的函数依赖</p>
+<p>2.X是超码</p>
+</blockquote>
+<p>通过BC范式，我们能够轻松的区分一个表需不需要拆分，只要不满足BC范式，就需要拆分</p>
+<hr>
+<h3 id="依据BC范式进行拆分"><a class="header-anchor" href="#依据BC范式进行拆分">¶</a>依据BC范式进行拆分</h3>
+<p>经过检查，我们发现X→Y不满足BC范式，我们需要把表拆成两个部分</p>
+<ul>
+<li>(X ∩ Y)</li>
+<li>(R - (Y - X))</li>
+</ul>
+<p>如果套用本文最开头的例子，X = dept_name，Y = {building, budget}</p>
+<ul>
+<li>(X ∩ Y) = (dept_name, building, budget)</li>
+<li>(R - (Y - X)) = (ID, name, dept_name, salary)</li>
+</ul>
+<p>刚好是我们拆分后的两个表！</p>
+<hr>
+<h3 id="BC范式的局限"><a class="header-anchor" href="#BC范式的局限">¶</a>BC范式的局限</h3>
+<blockquote>
+<p>在设计数据库时，我们有的时候需要一些依赖关系如X → Y，这个依赖关系并不满足BC范式的要求，但是我们就是要保留这个依赖关系，这时BC范式就会暴露出<strong>要求过严</strong>的局限性</p>
+</blockquote>
+<p>让我们看一个例子：</p>
+<img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gmz67iomzpj31jt0u0tk0.jpg" style="zoom:50%;">
+<p>我们有一个大学的E-R图，我们有一下要求</p>
+<ul>
+<li>教师只能和单个系关联</li>
+<li>一个学生可以有多个导师</li>
+<li>一个学生在一个系中至多有一个导师</li>
+<li>一个教师只能在一个系中担任导师</li>
+</ul>
+<p>根据以上条件和E-R图，我们可以得到下面的两条函数依赖，需要在dept_name中成立</p>
+<ul>
+<li>i_ID → dept_name</li>
+<li>s_ID, dept_name → i_ID</li>
+</ul>
+<p>如果按照BC范式的要求，i_ID并不是dept_name的超码(因为一个学生可以有多个导师)，我们需要对dept_advisor进行拆分</p>
+<p>拆分为</p>
+<ul>
+<li>(s_ID, i_ID)</li>
+<li>(i_ID, dept_name)</li>
+</ul>
+<p>但是拆分后，s_ID, dept_name → i_ID不再成立，与我们的实际要求相违背</p>
+<p>所以用BC范式约束dept_advisor是不合理的</p>
+<hr>
+<h3 id="第三范式-3NF"><a class="header-anchor" href="#第三范式-3NF">¶</a>第三范式(3NF)</h3>
+<p>第三范式可以看作是BC范式的宽松版，在BC范式两条要求的基础上，加上了第三个条件</p>
+<blockquote>
+<p>对F+中的形如X→Y的函数依赖，必须满足下面的三点之一</p>
+<p>1.X→Y是平凡的函数依赖</p>
+<p>2.X是超码</p>
+<p>3.Y - X中的每个属性A都包含于R的一个候选码中</p>
+</blockquote>
+<p>如果我们用第三范式的要求来解上面那个例子，会是什么结果呢？</p>
+<p>有下面两个函数依赖需要成立</p>
+<ul>
+<li>i_ID → dept_name</li>
+<li>s_ID, dept_name → i_ID</li>
+</ul>
+<p>我们主要看<strong>i_ID → dept_name</strong></p>
+<p>很明显，不满足前两条，那满不满足第三条呢？</p>
+<p>我们先用dept_name - i_ID = dept_name</p>
+<p>接下来，只需要证明dept_name包含于候选码中，就可以满足第三个条件了</p>
+<p>由于s_ID, dept_name → i_ID，那么(s_ID, dept_name)至少是一个超码</p>
+<p>不存在(s_ID,dept_name)的子集也为超码，所以(s_ID, dept_name)是候选码</p>
+<p>所以dept_name包含于(s_ID, dept_name)候选码中，<strong>i_ID → dept_name</strong>满足第三个条件，不需要进行拆分！</p>
+<hr>
+<h2 id="结语"><a class="header-anchor" href="#结语">¶</a>结语</h2>
+<p>本文主要参照《数据库系统概念》这本书，文中很多例子都出自此书，借着写博客的机会，把这本书的第八章又看了一遍。写完文章，看着电脑里面4个G的无声录屏，真是太尴尬了🌝，哈哈哈哈哈哈哈。</p>
+]]></content>
+      <tags>
+        <tag>数据库📖</tag>
+      </tags>
+  </entry>
 </search>

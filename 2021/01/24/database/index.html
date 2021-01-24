@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ltom01241010.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="¶一个难题 其实本节的内容，主要围绕着一个问题展开:  是把导师和部门放在一个表inst_dept中，还是放在分开放在两个表instructor,department中？  让我们分别看看两种方案吧  ¶方案一    ID name salary dept_name building budget     22222 Einstein 95000 Physics Waston 70000   12">
+<meta property="og:type" content="article">
+<meta property="og:title" content="database">
+<meta property="og:url" content="http://ltom01241010.github.io/2021/01/24/database/index.html">
+<meta property="og:site_name" content="ChineseSheep">
+<meta property="og:description" content="¶一个难题 其实本节的内容，主要围绕着一个问题展开:  是把导师和部门放在一个表inst_dept中，还是放在分开放在两个表instructor,department中？  让我们分别看看两种方案吧  ¶方案一    ID name salary dept_name building budget     22222 Einstein 95000 Physics Waston 70000   12">
+<meta property="og:locale">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008eGmZEgy1gmz67iomzpj31jt0u0tk0.jpg">
+<meta property="article:published_time" content="2021-01-24T07:13:16.000Z">
+<meta property="article:modified_time" content="2021-01-24T15:27:32.887Z">
+<meta property="article:author" content="ChineseSheep">
+<meta property="article:tag" content="数据库📖">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/008eGmZEgy1gmz67iomzpj31jt0u0tk0.jpg">
+
+<link rel="canonical" href="http://ltom01241010.github.io/2021/01/24/database/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>database | ChineseSheep</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">ChineseSheep</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://ltom01241010.github.io/2021/01/24/database/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gjmqrr57w8j30u00tyqbq.jpg">
+      <meta itemprop="name" content="ChineseSheep">
+      <meta itemprop="description" content="擅长面向cv的编程">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ChineseSheep">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          database
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-01-24 15:13:16 / Modified: 23:27:32" itemprop="dateCreated datePublished" datetime="2021-01-24T15:13:16+08:00">2021-01-24</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="一个难题"><a class="header-anchor" href="#一个难题">¶</a>一个难题</h2>
+<p>其实本节的内容，主要围绕着一个问题展开:</p>
+<ul>
+<li>是把导师和部门放在一个表inst_dept中，还是放在分开放在两个表instructor,department中？</li>
+</ul>
+<p>让我们分别看看两种方案吧</p>
+<hr>
+<h3 id="方案一"><a class="header-anchor" href="#方案一">¶</a>方案一</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">ID</th>
+<th style="text-align:center">name</th>
+<th style="text-align:center">salary</th>
+<th style="text-align:center">dept_name</th>
+<th style="text-align:center">building</th>
+<th style="text-align:center">budget</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">22222</td>
+<td style="text-align:center">Einstein</td>
+<td style="text-align:center">95000</td>
+<td style="text-align:center">Physics</td>
+<td style="text-align:center">Waston</td>
+<td style="text-align:center">70000</td>
+</tr>
+<tr>
+<td style="text-align:center">12121</td>
+<td style="text-align:center">Wu</td>
+<td style="text-align:center">90000</td>
+<td style="text-align:center">Finance</td>
+<td style="text-align:center">Painter</td>
+<td style="text-align:center">120000</td>
+</tr>
+<tr>
+<td style="text-align:center">45565</td>
+<td style="text-align:center">Katz</td>
+<td style="text-align:center">75000</td>
+<td style="text-align:center">Comp.Sci</td>
+<td style="text-align:center">Taylor</td>
+<td style="text-align:center">10000</td>
+</tr>
+<tr>
+<td style="text-align:center">10101</td>
+<td style="text-align:center">Srinivasan</td>
+<td style="text-align:center">65000</td>
+<td style="text-align:center">Comp.Sci</td>
+<td style="text-align:center">Taylor</td>
+<td style="text-align:center">10000</td>
+</tr>
+<tr>
+<td style="text-align:center">83821</td>
+<td style="text-align:center">Brandt</td>
+<td style="text-align:center">92000</td>
+<td style="text-align:center">Comp.Sci</td>
+<td style="text-align:center">Taylor</td>
+<td style="text-align:center">10000</td>
+</tr>
+</tbody>
+</table>
+<center>inst_dept</center>
+<p>一眼看去，这个表非常的直观，通过一个表就能了解到每个老师的所有信息。而且，在查询时不需要使用join语句，对程序员也十分友好。这种方案看似非常不错，但却有两个非常严重的缺点。</p>
+<blockquote>
+<p>1.先有老师再有系</p>
+</blockquote>
+<p>如果大工创建了一个干饭系，但是由于这个系没有前景，迟迟没有老师愿意加入。我们没办法把干饭系加入表中，因为每个记录在表中的系，都是有老师的。没有老师，就不能录入表格，在数据库中，要避免使用空值，所以老师那里录入空值也不太好。</p>
+<blockquote>
+<p>2.有很多废信息</p>
+</blockquote>
+<p>假如大工有10000名教职工，却只有30个系，假设我们正在看有10000名教职工信息的表格</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">ID</th>
+<th style="text-align:center">name</th>
+<th style="text-align:center">salary</th>
+<th style="text-align:center">dept_name</th>
+<th style="text-align:center">building</th>
+<th style="text-align:center">budget</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">小陈</td>
+<td style="text-align:center">95000</td>
+<td style="text-align:center">软国</td>
+<td style="text-align:center">信息楼</td>
+<td style="text-align:center">62000</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">小王</td>
+<td style="text-align:center">90000</td>
+<td style="text-align:center">软国</td>
+<td style="text-align:center">信息楼</td>
+<td style="text-align:center">62000</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">小夏</td>
+<td style="text-align:center">75000</td>
+<td style="text-align:center">软国</td>
+<td style="text-align:center">信息楼</td>
+<td style="text-align:center">62000</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">小薛</td>
+<td style="text-align:center">65000</td>
+<td style="text-align:center">软国</td>
+<td style="text-align:center">信息楼</td>
+<td style="text-align:center">62000</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">小张</td>
+<td style="text-align:center">92000</td>
+<td style="text-align:center">软国</td>
+<td style="text-align:center">信息楼</td>
+<td style="text-align:center">62000</td>
+</tr>
+<tr>
+<td style="text-align:center">……</td>
+<td style="text-align:center">……</td>
+<td style="text-align:center">……</td>
+<td style="text-align:center">软国</td>
+<td style="text-align:center">信息楼</td>
+<td style="text-align:center">62000</td>
+</tr>
+</tbody>
+</table>
+<center>inst_dept</center>
+<p>当我们看完软国的所有老师后，我们就会想，为什么不单独把软国的办公地点和预算列出来呢，在每个老师后面都重复一遍是不是没啥必要😅</p>
+<p>实际上，把每个老师后面都加上每个系的办公地点和预算是对内存空间的浪费。特别是有10000名教职工的时候，每一排的细微错误，在✖️10000之后，都会被无限放大。</p>
+<hr>
+<h3 id="方案二"><a class="header-anchor" href="#方案二">¶</a>方案二</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">ID</th>
+<th>name</th>
+<th>dept_name</th>
+<th>salary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">22222</td>
+<td>Einstein</td>
+<td>Physics</td>
+<td>95000</td>
+</tr>
+<tr>
+<td style="text-align:left">12121</td>
+<td>Wu</td>
+<td>Finance</td>
+<td>90000</td>
+</tr>
+<tr>
+<td style="text-align:left">45565</td>
+<td>Katz</td>
+<td>Comp.Sci</td>
+<td>75000</td>
+</tr>
+<tr>
+<td style="text-align:left">10101</td>
+<td>Srinivasan</td>
+<td>Comp.Sci</td>
+<td>65000</td>
+</tr>
+<tr>
+<td style="text-align:left">83821</td>
+<td>Brandt</td>
+<td>Comp.Sci</td>
+<td>92000</td>
+</tr>
+</tbody>
+</table>
+<center>instructor</center>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">dept_name</th>
+<th style="text-align:center">building</th>
+<th style="text-align:center">budget</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Physics</td>
+<td style="text-align:center">Watson</td>
+<td style="text-align:center">70000</td>
+</tr>
+<tr>
+<td style="text-align:center">Finance</td>
+<td style="text-align:center">Painter</td>
+<td style="text-align:center">120000</td>
+</tr>
+<tr>
+<td style="text-align:center">Comp.Sci</td>
+<td style="text-align:center">Taylor</td>
+<td style="text-align:center">10000</td>
+</tr>
+</tbody>
+</table>
+<center>department</center>
+<p>方案二就好很多了，如果录入10000条数据，也不会浪费空间，需要查询老师系的办公地点时，只需要将两个表连接后再查询就行了。</p>
+<p>所以我们得出结论</p>
+<ul>
+<li>分开记录比合起来记录要好！❌</li>
+</ul>
+<p>这个结论是不严谨的，因为没有考虑分解有损的情况</p>
+<hr>
+<h3 id="有损分解"><a class="header-anchor" href="#有损分解">¶</a>有损分解</h3>
+<p>故名思义，有损分解就是把大表分解成小表之后，会损失原始数据的分解</p>
+<p>让我们来看一个例子</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">ID</th>
+<th style="text-align:center">name</th>
+<th style="text-align:center">street</th>
+<th style="text-align:center">city</th>
+<th style="text-align:center">salary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">57766</td>
+<td style="text-align:center">Kim</td>
+<td style="text-align:center">Main</td>
+<td style="text-align:center">Perryridge</td>
+<td style="text-align:center">75000</td>
+</tr>
+<tr>
+<td style="text-align:center">98776</td>
+<td style="text-align:center">Kim</td>
+<td style="text-align:center">North</td>
+<td style="text-align:center">Hampton</td>
+<td style="text-align:center">67000</td>
+</tr>
+</tbody>
+</table>
+<center>employee</center>
+<p>在分解之后，两个Kim会出现混淆的现象</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>57766</td>
+<td>Kim</td>
+</tr>
+<tr>
+<td>98776</td>
+<td>Kim</td>
+</tr>
+</tbody>
+</table>
+<p>。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>street</th>
+<th>city</th>
+<th>salary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kim</td>
+<td>Main</td>
+<td>Perryridge</td>
+<td>75000</td>
+</tr>
+<tr>
+<td>Kim</td>
+<td>North</td>
+<td>Hampton</td>
+<td>67000</td>
+</tr>
+</tbody>
+</table>
+<p>如果要把两个表格合在一起，会无法分辨表一中的ID对应表二中的哪个Kim</p>
+<h3 id="无损分解"><a class="header-anchor" href="#无损分解">¶</a>无损分解</h3>
+<p>如果分解之后再合成，能够得到跟原来一样的表(没有损失信息)，就叫做无损分解</p>
+<hr>
+<h3 id="第一范式与原子域"><a class="header-anchor" href="#第一范式与原子域">¶</a>第一范式与原子域</h3>
+<ul>
+<li>原子域：具有原子性的域。</li>
+<li>第一范式：在关系模型中，所有的域都应该是原子性的，即数据库表的每一列都是不可分割的原子数据项，而不能是集合，数组，记录等非原子数据项。</li>
+</ul>
+<p>满足第一范式是关系模型的基本要求，要是不满足第一范式，就不能被称作是关系模型。</p>
+<p>例如三围这个属性，是胸围，腰围，臀围的集合，如果一个表中包含了三围这个属性，必须要拆分成胸围，腰围，臀围后才能满足第一范式。</p>
+<hr>
+<h2 id="使用函数依赖进行分解"><a class="header-anchor" href="#使用函数依赖进行分解">¶</a>使用函数依赖进行分解</h2>
+<h3 id="表示方法"><a class="header-anchor" href="#表示方法">¶</a>表示方法</h3>
+<p>关系模式是一个属性集，为了区分属性集是不是关系模式，用三种不同的方法表示属性集</p>
+<ul>
+<li>α :表示属性集，但是不知道属性集是不是关系模式</li>
+<li>r®:表示属性集，这里的属性集特指关系模式，r代表关系的名字，不在意名字的话，可以省掉r，只写R</li>
+</ul>
+<p>超码是一个或多个属性的集合，可以在表中区分不同的实体，某集合只要包含了超码，也会变成超码，所以说超码的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%B6%85%E9%9B%86">超集</a>也是超码</p>
+<ul>
+<li>K:表示属性集，这里的属性集特指超码</li>
+</ul>
+<hr>
+<h3 id="函数依赖"><a class="header-anchor" href="#函数依赖">¶</a>函数依赖</h3>
+<blockquote>
+<p>给定r®上的一个实例，我们说这个实例满足函数依赖X→Y的条件是：对实例中所有的元组对t1和t2，若t1[X]=t2[X]，若t1[X] = t2[X]，则t1[Y] = t2[Y]</p>
+</blockquote>
+<p>通俗来讲就是：</p>
+<blockquote>
+<p>设X,Y是关系R的两个属性集合，当任何时刻R中的任意两个元组中的X属性值相同时，则它们的Y属性值也相同，则称X函数决定Y，或Y函数依赖于X。</p>
+</blockquote>
+<ul>
+<li>例1：A→C在下表中是否成立？C→A呢？</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a1</td>
+<td>b1</td>
+<td>c1</td>
+</tr>
+<tr>
+<td>a1</td>
+<td>b2</td>
+<td>c1</td>
+</tr>
+<tr>
+<td>a2</td>
+<td>b2</td>
+<td>c2</td>
+</tr>
+<tr>
+<td>a2</td>
+<td>b3</td>
+<td>c2</td>
+</tr>
+<tr>
+<td>a3</td>
+<td>b3</td>
+<td>c2</td>
+</tr>
+</tbody>
+</table>
+<p>写这种题要记住一句关键的话，<strong>一个X仅有一个Y对应</strong>，跟判段是否为函数十分相似</p>
+<p>可以看到，a1对应c1，a2对应c2，a3也对应c3，A中的每一个值都仅有唯一的C值对应，所以A→C成立</p>
+<p>但是在C中，c2对应a2和a3，所以C→A不成立</p>
+<ul>
+<li>例2:在关系模式R中，K→R是否成立？</li>
+</ul>
+<p>根据超码的定义，如果两个元组在超码上的值相同，那么这两个元组一定是同一个，所以，K→R成立</p>
+<hr>
+<h3 id="平凡函数依赖和非平凡函数依赖"><a class="header-anchor" href="#平凡函数依赖和非平凡函数依赖">¶</a>平凡函数依赖和非平凡函数依赖</h3>
+<blockquote>
+<p>若X→Y且X不包含Y,则称X→Y为非平凡函数依赖；否则若X包含Y，则必有X→Y,称此X→Y为平凡函数依赖.</p>
+</blockquote>
+<p>常见的平凡函数依赖有</p>
+<ul>
+<li>A→A</li>
+<li>AB→A</li>
+</ul>
+<hr>
+<h3 id="Armstrong公理"><a class="header-anchor" href="#Armstrong公理">¶</a>Armstrong公理</h3>
+<blockquote>
+<p>自反律：若X为一属性集且Y⊆X，则X→Y成立</p>
+<p>增补律：若X→Y成立且Z为一属性集，则ZX→ZY成立</p>
+<p>传递率：若X→Y和Y→Z成立，则X→成立</p>
+</blockquote>
+<p>公理推论：</p>
+<blockquote>
+<p>合并律：若X→Y和X→Z成立，则X→YZ成立</p>
+<p>分解律：若X→ZY成立，则X→Y和X→Z成立</p>
+<p>伪传递律：若X→Y和ZY→M成立，XZ→M成立</p>
+</blockquote>
+<p>让我们通过公理来证明一下推论</p>
+<ul>
+<li>合并律：</li>
+</ul>
+<p>因X→Y ，所以X→XY （增广律 XX→XY即X→XY）</p>
+<p>因X→Z ，所以XY→YZ （增广律）</p>
+<p>因X→XY，XY→YZ(增广律)</p>
+<p>故X→YZ （传递律）</p>
+<ul>
+<li>分解律：</li>
+</ul>
+<p>因Y⊆ZY，所以ZY→Y(增广律)</p>
+<p>因X→ZY，所以X→Y(传递律)</p>
+<p>因Z⊆ZY，所以ZY→Z(增广律)</p>
+<p>因X→ZY，所以Z→Y(传递律)</p>
+<ul>
+<li>伪传递律：</li>
+</ul>
+<p>因X→Y ，所以WX→WY （增广律）</p>
+<p>因WY→Z ，所以XW→Z （传递律）</p>
+<hr>
+<h3 id="依赖函数集F及其闭包"><a class="header-anchor" href="#依赖函数集F及其闭包">¶</a>依赖函数集F及其闭包</h3>
+<blockquote>
+<p>用通俗的话来讲，F就是给出的依赖关系集，但是给出的依赖集一般给的很简单，往往可以进一步推导出别的依赖关系，把所有推导出来的依赖关系加上原来给出的依赖关系合在一起，就可以得到F的闭包—F+</p>
+</blockquote>
+<p>我们不妨来看一道例题</p>
+<ul>
+<li>已知关系模式R(ABC)，F={A→C,B→C}，求F+</li>
+</ul>
+<p>这题的关键是，用{A→C,B→C}推导出所有可以推导出的依赖关系</p>
+<p>这个过程一般很庞大，我们就只推一部分，主要是为了更好的理解F+</p>
+<p>现在已知A→C，我们就可以推出AC→C(增广律)，我们把AC→C加入F+中</p>
+<p>A→A在F中也没有，也可以加入到F+中</p>
+<p>当然，F+远不止这些，因为还有很多依赖关系没有被推导出来</p>
+<hr>
+<h2 id="范式"><a class="header-anchor" href="#范式">¶</a>范式</h2>
+<h3 id="第一范式"><a class="header-anchor" href="#第一范式">¶</a>第一范式</h3>
+<p>在前面已经和和原子域一起介绍过了，简单来说，第一范式是最低要求，后面的BC范式和第三范式都是建立在在第一范式的基础上的</p>
+<hr>
+<h3 id="BC范式-BCNF"><a class="header-anchor" href="#BC范式-BCNF">¶</a>BC范式(BCNF)</h3>
+<blockquote>
+<p>对F+中的形如X→Y的函数依赖，必须满足下面的两点之一</p>
+<p>1.X→Y是平凡的函数依赖</p>
+<p>2.X是超码</p>
+</blockquote>
+<p>通过BC范式，我们能够轻松的区分一个表需不需要拆分，只要不满足BC范式，就需要拆分</p>
+<hr>
+<h3 id="依据BC范式进行拆分"><a class="header-anchor" href="#依据BC范式进行拆分">¶</a>依据BC范式进行拆分</h3>
+<p>经过检查，我们发现X→Y不满足BC范式，我们需要把表拆成两个部分</p>
+<ul>
+<li>(X ∩ Y)</li>
+<li>(R - (Y - X))</li>
+</ul>
+<p>如果套用本文最开头的例子，X = dept_name，Y = {building, budget}</p>
+<ul>
+<li>(X ∩ Y) = (dept_name, building, budget)</li>
+<li>(R - (Y - X)) = (ID, name, dept_name, salary)</li>
+</ul>
+<p>刚好是我们拆分后的两个表！</p>
+<hr>
+<h3 id="BC范式的局限"><a class="header-anchor" href="#BC范式的局限">¶</a>BC范式的局限</h3>
+<blockquote>
+<p>在设计数据库时，我们有的时候需要一些依赖关系如X → Y，这个依赖关系并不满足BC范式的要求，但是我们就是要保留这个依赖关系，这时BC范式就会暴露出<strong>要求过严</strong>的局限性</p>
+</blockquote>
+<p>让我们看一个例子：</p>
+<img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gmz67iomzpj31jt0u0tk0.jpg" style="zoom:50%;">
+<p>我们有一个大学的E-R图，我们有一下要求</p>
+<ul>
+<li>教师只能和单个系关联</li>
+<li>一个学生可以有多个导师</li>
+<li>一个学生在一个系中至多有一个导师</li>
+<li>一个教师只能在一个系中担任导师</li>
+</ul>
+<p>根据以上条件和E-R图，我们可以得到下面的两条函数依赖，需要在dept_name中成立</p>
+<ul>
+<li>i_ID → dept_name</li>
+<li>s_ID, dept_name → i_ID</li>
+</ul>
+<p>如果按照BC范式的要求，i_ID并不是dept_name的超码(因为一个学生可以有多个导师)，我们需要对dept_advisor进行拆分</p>
+<p>拆分为</p>
+<ul>
+<li>(s_ID, i_ID)</li>
+<li>(i_ID, dept_name)</li>
+</ul>
+<p>但是拆分后，s_ID, dept_name → i_ID不再成立，与我们的实际要求相违背</p>
+<p>所以用BC范式约束dept_advisor是不合理的</p>
+<hr>
+<h3 id="第三范式-3NF"><a class="header-anchor" href="#第三范式-3NF">¶</a>第三范式(3NF)</h3>
+<p>第三范式可以看作是BC范式的宽松版，在BC范式两条要求的基础上，加上了第三个条件</p>
+<blockquote>
+<p>对F+中的形如X→Y的函数依赖，必须满足下面的三点之一</p>
+<p>1.X→Y是平凡的函数依赖</p>
+<p>2.X是超码</p>
+<p>3.Y - X中的每个属性A都包含于R的一个候选码中</p>
+</blockquote>
+<p>如果我们用第三范式的要求来解上面那个例子，会是什么结果呢？</p>
+<p>有下面两个函数依赖需要成立</p>
+<ul>
+<li>i_ID → dept_name</li>
+<li>s_ID, dept_name → i_ID</li>
+</ul>
+<p>我们主要看<strong>i_ID → dept_name</strong></p>
+<p>很明显，不满足前两条，那满不满足第三条呢？</p>
+<p>我们先用dept_name - i_ID = dept_name</p>
+<p>接下来，只需要证明dept_name包含于候选码中，就可以满足第三个条件了</p>
+<p>由于s_ID, dept_name → i_ID，那么(s_ID, dept_name)至少是一个超码</p>
+<p>不存在(s_ID,dept_name)的子集也为超码，所以(s_ID, dept_name)是候选码</p>
+<p>所以dept_name包含于(s_ID, dept_name)候选码中，<strong>i_ID → dept_name</strong>满足第三个条件，不需要进行拆分！</p>
+<hr>
+<h2 id="结语"><a class="header-anchor" href="#结语">¶</a>结语</h2>
+<p>本文主要参照《数据库系统概念》这本书，文中很多例子都出自此书，借着写博客的机会，把这本书的第八章又看了一遍。写完文章，看着电脑里面4个G的无声录屏，真是太尴尬了🌝，哈哈哈哈哈哈哈。</p>
+
+    </div>
+
+
+    <div>
+      
+         <div>
+      
+          <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束感谢您的阅读-------------</div>
+      
+  </div>
+      
+    </div>
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%F0%9F%93%96/" rel="tag"><i class="fa fa-tag"></i> 数据库📖</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/12/17/forkthreadcreate/" rel="prev" title="forkthreadcreate">
+      <i class="fa fa-chevron-left"></i> forkthreadcreate
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E9%9A%BE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">一个难题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E4%B8%80"><span class="nav-number">1.1.</span> <span class="nav-text">方案一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E4%BA%8C"><span class="nav-number">1.2.</span> <span class="nav-text">方案二</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E6%8D%9F%E5%88%86%E8%A7%A3"><span class="nav-number">1.3.</span> <span class="nav-text">有损分解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E6%8D%9F%E5%88%86%E8%A7%A3"><span class="nav-number">1.4.</span> <span class="nav-text">无损分解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E8%8C%83%E5%BC%8F%E4%B8%8E%E5%8E%9F%E5%AD%90%E5%9F%9F"><span class="nav-number">1.5.</span> <span class="nav-text">第一范式与原子域</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96%E8%BF%9B%E8%A1%8C%E5%88%86%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text">使用函数依赖进行分解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95"><span class="nav-number">2.1.</span> <span class="nav-text">表示方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96"><span class="nav-number">2.2.</span> <span class="nav-text">函数依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B3%E5%87%A1%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96%E5%92%8C%E9%9D%9E%E5%B9%B3%E5%87%A1%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96"><span class="nav-number">2.3.</span> <span class="nav-text">平凡函数依赖和非平凡函数依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Armstrong%E5%85%AC%E7%90%86"><span class="nav-number">2.4.</span> <span class="nav-text">Armstrong公理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96%E5%87%BD%E6%95%B0%E9%9B%86F%E5%8F%8A%E5%85%B6%E9%97%AD%E5%8C%85"><span class="nav-number">2.5.</span> <span class="nav-text">依赖函数集F及其闭包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8C%83%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">范式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E8%8C%83%E5%BC%8F"><span class="nav-number">3.1.</span> <span class="nav-text">第一范式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BC%E8%8C%83%E5%BC%8F-BCNF"><span class="nav-number">3.2.</span> <span class="nav-text">BC范式(BCNF)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%9D%E6%8D%AEBC%E8%8C%83%E5%BC%8F%E8%BF%9B%E8%A1%8C%E6%8B%86%E5%88%86"><span class="nav-number">3.3.</span> <span class="nav-text">依据BC范式进行拆分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BC%E8%8C%83%E5%BC%8F%E7%9A%84%E5%B1%80%E9%99%90"><span class="nav-number">3.4.</span> <span class="nav-text">BC范式的局限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E8%8C%83%E5%BC%8F-3NF"><span class="nav-number">3.5.</span> <span class="nav-text">第三范式(3NF)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-number">4.</span> <span class="nav-text">结语</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ChineseSheep"
+      src="https://tva1.sinaimg.cn/large/007S8ZIlly1gjmqrr57w8j30u00tyqbq.jpg">
+  <p class="site-author-name" itemprop="name">ChineseSheep</p>
+  <div class="site-description" itemprop="description">擅长面向cv的编程</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChineseSheep</span>
+</div>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">所有博客共17.2k字</span>
+</div>
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
