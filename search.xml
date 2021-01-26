@@ -660,16 +660,16 @@ T =n1a1 + n2a2 + ……n7a7</p>
       </tags>
   </entry>
   <entry>
-    <title>database</title>
+    <title>关系数据库设计</title>
     <url>/2021/01/24/database/</url>
     <content><![CDATA[<h2 id="一个难题"><a class="header-anchor" href="#一个难题">¶</a>一个难题</h2>
 <p>其实本节的内容，主要围绕着一个问题展开:</p>
 <ul>
-<li>是把导师和部门放在一个表inst_dept中，还是放在分开放在两个表instructor,department中？</li>
+<li>是把导师和部门放在一个表<strong>inst_dept</strong>中，还是放在分开放在两个表<strong>instructor</strong>,<strong>department</strong>中呢？</li>
 </ul>
 <p>让我们分别看看两种方案吧</p>
 <hr>
-<h3 id="方案一"><a class="header-anchor" href="#方案一">¶</a>方案一</h3>
+<h3 id="方案一-放在一个表中"><a class="header-anchor" href="#方案一-放在一个表中">¶</a>方案一:放在一个表中</h3>
 <table>
 <thead>
 <tr>
@@ -725,15 +725,15 @@ T =n1a1 + n2a2 + ……n7a7</p>
 </tbody>
 </table>
 <center>inst_dept</center>
-<p>一眼看去，这个表非常的直观，通过一个表就能了解到每个老师的所有信息。而且，在查询时不需要使用join语句，对程序员也十分友好。这种方案看似非常不错，但却有两个非常严重的缺点。</p>
+<p>一眼看去，表非常的直观，能清楚地了解每个老师的所有信息。而且，在查询时不需要使用join语句，对程序员也十分友好。这种方案看似非常不错，但却有两个非常严重的缺点。</p>
 <blockquote>
 <p>1.先有老师再有系</p>
 </blockquote>
-<p>如果大工创建了一个干饭系，但是由于这个系没有前景，迟迟没有老师愿意加入。我们没办法把干饭系加入表中，因为每个记录在表中的系，都是有老师的。没有老师，就不能录入表格，在数据库中，要避免使用空值，所以老师那里录入空值也不太好。</p>
+<p>如果大连理工大学创建了一个干饭系，但是由于这个系没有前景，所以迟迟没有老师愿意加入。我们没办法把干饭系加入到表中，因为每个记录在表中的系，都是有老师的。没有老师，就不能录入表格，在数据库中，要<strong>避免使用空值</strong>，所以把老师那里录入空值也不太好。</p>
 <blockquote>
 <p>2.有很多废信息</p>
 </blockquote>
-<p>假如大工有10000名教职工，却只有30个系，假设我们正在看有10000名教职工信息的表格</p>
+<p>假如大连理工大学有10000名教职工，却只有30个系，现在我们正在看有10000名教职工信息的表格</p>
 <table>
 <thead>
 <tr>
@@ -797,10 +797,10 @@ T =n1a1 + n2a2 + ……n7a7</p>
 </tbody>
 </table>
 <center>inst_dept</center>
-<p>当我们看完软国的所有老师后，我们就会想，为什么不单独把软国的办公地点和预算列出来呢，在每个老师后面都重复一遍是不是没啥必要😅</p>
-<p>实际上，把每个老师后面都加上每个系的办公地点和预算是对内存空间的浪费。特别是有10000名教职工的时候，每一排的细微错误，在✖️10000之后，都会被无限放大。</p>
+<p>当我们看完软国的所有老师后，我们一定会想，为什么不单独把软国的<strong>办公地点</strong>和<strong>预算</strong>列出来呢，在每个老师后面都重复一遍是不是没啥必要😅</p>
+<p>实际上，把所有老师后面都加上每个系的办公地点和预算，是对内存空间的浪费。特别是有10000名教职工的时候，每一排的浪费，在✖️10000之后，都会被无限放大。</p>
 <hr>
-<h3 id="方案二"><a class="header-anchor" href="#方案二">¶</a>方案二</h3>
+<h3 id="方案二-放在两个表中"><a class="header-anchor" href="#方案二-放在两个表中">¶</a>方案二:放在两个表中</h3>
 <table>
 <thead>
 <tr>
@@ -871,16 +871,16 @@ T =n1a1 + n2a2 + ……n7a7</p>
 </tbody>
 </table>
 <center>department</center>
-<p>方案二就好很多了，如果录入10000条数据，也不会浪费空间，需要查询老师系的办公地点时，只需要将两个表连接后再查询就行了。</p>
+<p>方案二就好很多了，即使录入10000条数据，也不会浪费空间，需要查询老师院系的办公地点时，只需要将两个表连接后再查询就行了。</p>
 <p>所以我们得出结论</p>
 <ul>
 <li>分开记录比合起来记录要好！❌</li>
 </ul>
-<p>这个结论是不严谨的，因为没有考虑分解有损的情况</p>
+<p>这个结论是<strong>不严谨</strong>的，因为没有考虑分解有损的情况</p>
 <hr>
 <h3 id="有损分解"><a class="header-anchor" href="#有损分解">¶</a>有损分解</h3>
-<p>故名思义，有损分解就是把大表分解成小表之后，会损失原始数据的分解</p>
-<p>让我们来看一个例子</p>
+<p>故名思义，有损分解就是把大表分解成小表之后，会<strong>损失原始数据</strong>的分解</p>
+<p>让我们来看一个例子，下面的是原表</p>
 <table>
 <thead>
 <tr>
@@ -909,7 +909,7 @@ T =n1a1 + n2a2 + ……n7a7</p>
 </tbody>
 </table>
 <center>employee</center>
-<p>在分解之后，两个Kim会出现混淆的现象</p>
+<p>我们把原表分解之后，两个Kim会出现<strong>混淆</strong>的现象</p>
 <table>
 <thead>
 <tr>
@@ -953,37 +953,31 @@ T =n1a1 + n2a2 + ……n7a7</p>
 </tr>
 </tbody>
 </table>
-<p>如果要把两个表格合在一起，会无法分辨表一中的ID对应表二中的哪个Kim</p>
+<p>如果现在要把两个表格合在一起，会无法分辨表一中的ID对应表二中的哪个Kim</p>
 <h3 id="无损分解"><a class="header-anchor" href="#无损分解">¶</a>无损分解</h3>
-<p>如果分解之后再合成，能够得到跟原来一样的表(没有损失信息)，就叫做无损分解</p>
-<hr>
-<h3 id="第一范式与原子域"><a class="header-anchor" href="#第一范式与原子域">¶</a>第一范式与原子域</h3>
-<ul>
-<li>原子域：具有原子性的域。</li>
-<li>第一范式：在关系模型中，所有的域都应该是原子性的，即数据库表的每一列都是不可分割的原子数据项，而不能是集合，数组，记录等非原子数据项。</li>
-</ul>
-<p>满足第一范式是关系模型的基本要求，要是不满足第一范式，就不能被称作是关系模型。</p>
-<p>例如三围这个属性，是胸围，腰围，臀围的集合，如果一个表中包含了三围这个属性，必须要拆分成胸围，腰围，臀围后才能满足第一范式。</p>
+<p>如果分解之后再合成，能够得到跟原来一样的表(没有损失信息)，就叫做<strong>无损分解</strong></p>
+<p>用<strong>关系代数</strong>来表示，就是:</p>
+<img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gn14mptq8oj30fb02udfn.jpg" style="zoom:50%;">
 <hr>
 <h2 id="使用函数依赖进行分解"><a class="header-anchor" href="#使用函数依赖进行分解">¶</a>使用函数依赖进行分解</h2>
 <h3 id="表示方法"><a class="header-anchor" href="#表示方法">¶</a>表示方法</h3>
-<p>关系模式是一个属性集，为了区分属性集是不是关系模式，用三种不同的方法表示属性集</p>
+<p>关系模式是一个属性集，为了稍作区分，我们用<strong>三种</strong>不同的方法表示属性集</p>
 <ul>
-<li>α :表示属性集，但是不知道属性集是不是关系模式</li>
-<li>r®:表示属性集，这里的属性集特指关系模式，r代表关系的名字，不在意名字的话，可以省掉r，只写R</li>
+<li>α :表示属性集，但是<strong>不知道</strong>属性集是不是关系模式</li>
+<li>r（R):表示属性集，这里的属性集<strong>特指关系模式</strong>，r代表关系的名字，不在意名字的话，可以省掉r，只写R</li>
 </ul>
 <p>超码是一个或多个属性的集合，可以在表中区分不同的实体，某集合只要包含了超码，也会变成超码，所以说超码的<a href="https://baike.baidu.com/item/%E8%B6%85%E9%9B%86">超集</a>也是超码</p>
 <ul>
-<li>K:表示属性集，这里的属性集特指超码</li>
+<li>K:表示属性集，这里的属性集<strong>特指超码</strong></li>
 </ul>
 <hr>
 <h3 id="函数依赖"><a class="header-anchor" href="#函数依赖">¶</a>函数依赖</h3>
 <blockquote>
-<p>给定r®上的一个实例，我们说这个实例满足函数依赖X→Y的条件是：对实例中所有的元组对t1和t2，若t1[X]=t2[X]，若t1[X] = t2[X]，则t1[Y] = t2[Y]</p>
+<p>给定r（R）上的一个实例，我们判断这个实例满足函数依赖X→Y的条件是：对实例中<strong>所有的</strong>元组对t1和t2，若t1[X] = t2[X]，有t1[X] = t2[X]，则t1[Y] = t2[Y]</p>
 </blockquote>
 <p>通俗来讲就是：</p>
 <blockquote>
-<p>设X,Y是关系R的两个属性集合，当任何时刻R中的任意两个元组中的X属性值相同时，则它们的Y属性值也相同，则称X函数决定Y，或Y函数依赖于X。</p>
+<p>设X,Y是关系R的两个属性集合，当任何时刻R中的<strong>任意</strong>两个元组中的X属性值相同时，则它们的Y属性值也相同，则称X函数决定Y，或Y函数依赖于X。</p>
 </blockquote>
 <ul>
 <li>例1：A→C在下表中是否成立？C→A呢？</li>
@@ -1077,7 +1071,7 @@ T =n1a1 + n2a2 + ……n7a7</p>
 <hr>
 <h3 id="依赖函数集F及其闭包"><a class="header-anchor" href="#依赖函数集F及其闭包">¶</a>依赖函数集F及其闭包</h3>
 <blockquote>
-<p>用通俗的话来讲，F就是给出的依赖关系集，但是给出的依赖集一般给的很简单，往往可以进一步推导出别的依赖关系，把所有推导出来的依赖关系加上原来给出的依赖关系合在一起，就可以得到F的闭包—F+</p>
+<p>用通俗的话来讲，F就是给出的依赖关系集，但是给出的依赖集一般给的很简单，往往可以<strong>进一步推导</strong>出别的依赖关系，把<strong>所有</strong>推导出来的依赖关系<strong>加上</strong>原来给出的依赖关系合在一起，就可以得到F的闭包F+</p>
 </blockquote>
 <p>我们不妨来看一道例题</p>
 <ul>
@@ -1087,11 +1081,16 @@ T =n1a1 + n2a2 + ……n7a7</p>
 <p>这个过程一般很庞大，我们就只推一部分，主要是为了更好的理解F+</p>
 <p>现在已知A→C，我们就可以推出AC→C(增广律)，我们把AC→C加入F+中</p>
 <p>A→A在F中也没有，也可以加入到F+中</p>
-<p>当然，F+远不止这些，因为还有很多依赖关系没有被推导出来</p>
+<p>当然，F+远不止这些，因为还有很多依赖关系没有被推导出来，全推出来后合上F，就能得到F+了</p>
 <hr>
 <h2 id="范式"><a class="header-anchor" href="#范式">¶</a>范式</h2>
-<h3 id="第一范式"><a class="header-anchor" href="#第一范式">¶</a>第一范式</h3>
-<p>在前面已经和和原子域一起介绍过了，简单来说，第一范式是最低要求，后面的BC范式和第三范式都是建立在在第一范式的基础上的</p>
+<h3 id="第一范式与原子域"><a class="header-anchor" href="#第一范式与原子域">¶</a>第一范式与原子域</h3>
+<ul>
+<li>原子域：具有原子性的域。</li>
+<li>第一范式：在关系模型中，所有的域都应该是原子性的，即数据库表的每一列都是不可分割的原子数据项，而不能是集合，数组，记录等非原子数据项。</li>
+</ul>
+<p>例如三围这个属性，是胸围，腰围，臀围的集合，如果一个表中包含了三围这个属性，必须要<strong>拆分</strong>成胸围，腰围，臀围后才能满足第一范式。</p>
+<p>简单来说，满足第一范式是关系模型的<strong>基本要求</strong>，要是不满足第一范式，就不能被称作是关系模型。后面的BC范式和第三范式都是建立在<strong>第一范式的基础上的</strong>。</p>
 <hr>
 <h3 id="BC范式-BCNF"><a class="header-anchor" href="#BC范式-BCNF">¶</a>BC范式(BCNF)</h3>
 <blockquote>
@@ -1107,7 +1106,7 @@ T =n1a1 + n2a2 + ……n7a7</p>
 <li>(X ∩ Y)</li>
 <li>(R - (Y - X))</li>
 </ul>
-<p>如果套用本文最开头的例子，X = dept_name，Y = {building, budget}</p>
+<p>如果套用本文最开头大学的例子，X = dept_name，Y = {building, budget}</p>
 <ul>
 <li>(X ∩ Y) = (dept_name, building, budget)</li>
 <li>(R - (Y - X)) = (ID, name, dept_name, salary)</li>
@@ -1120,14 +1119,13 @@ T =n1a1 + n2a2 + ……n7a7</p>
 </blockquote>
 <p>让我们看一个例子：</p>
 <img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gmz67iomzpj31jt0u0tk0.jpg" style="zoom:50%;">
-<p>我们有一个大学的E-R图，我们有一下要求</p>
+<p>我们有一个大学的E-R图，包含以下要求：</p>
 <ul>
-<li>教师只能和单个系关联</li>
+<li>一个教师只能在一个系中</li>
 <li>一个学生可以有多个导师</li>
-<li>一个学生在一个系中至多有一个导师</li>
-<li>一个教师只能在一个系中担任导师</li>
+<li>一个学生在一个系中最多有一个导师</li>
 </ul>
-<p>根据以上条件和E-R图，我们可以得到下面的两条函数依赖，需要在dept_name中成立</p>
+<p>根据以上条件和E-R图，我们可以得到两条函数依赖，需要在dept_name中成立</p>
 <ul>
 <li>i_ID → dept_name</li>
 <li>s_ID, dept_name → i_ID</li>
@@ -1142,9 +1140,10 @@ T =n1a1 + n2a2 + ……n7a7</p>
 <p>所以用BC范式约束dept_advisor是不合理的</p>
 <hr>
 <h3 id="第三范式-3NF"><a class="header-anchor" href="#第三范式-3NF">¶</a>第三范式(3NF)</h3>
-<p>第三范式可以看作是BC范式的宽松版，在BC范式两条要求的基础上，加上了第三个条件</p>
+<p>第三范式可以看作是BC范式的宽松版，BC范式可以看作第三范式的特殊形式</p>
+<p>第三范式在BC范式两条要求的基础上，加上了第三个条件</p>
+<p><strong>对F+中的形如X→Y的函数依赖，必须满足下面的三点之一：</strong></p>
 <blockquote>
-<p>对F+中的形如X→Y的函数依赖，必须满足下面的三点之一</p>
 <p>1.X→Y是平凡的函数依赖</p>
 <p>2.X是超码</p>
 <p>3.Y - X中的每个属性A都包含于R的一个候选码中</p>
@@ -1162,6 +1161,46 @@ T =n1a1 + n2a2 + ……n7a7</p>
 <p>由于s_ID, dept_name → i_ID，那么(s_ID, dept_name)至少是一个超码</p>
 <p>不存在(s_ID,dept_name)的子集也为超码，所以(s_ID, dept_name)是候选码</p>
 <p>所以dept_name包含于(s_ID, dept_name)候选码中，<strong>i_ID → dept_name</strong>满足第三个条件，不需要进行拆分！</p>
+<hr>
+<h2 id="属性集的闭包"><a class="header-anchor" href="#属性集的闭包">¶</a>属性集的闭包</h2>
+<h3 id="函数确定"><a class="header-anchor" href="#函数确定">¶</a>函数确定</h3>
+<blockquote>
+<p>X是属性集，Y是属性，如果X → Y，则称Y被X函数确定</p>
+</blockquote>
+<h3 id="用函数确定判断超码"><a class="header-anchor" href="#用函数确定判断超码">¶</a>用函数确定判断超码</h3>
+<p>我们不妨再回顾一下超码的知识</p>
+<p>要证明X是超码，我们需要证明X→R，R是表中所有的属性的集合，所以我们需要证明X可以函数确定所有的属性</p>
+<p>首先我们需要计算出F+，也就是所有的依赖关系，然后我们可能会得到诸如X→Z，X→M等依赖关系</p>
+<p>当Y，Z，M等合起来能组成R时，就说明X是超码</p>
+<p>但是这个做法有一个缺点，就是需要计算F+，很明显F+的计算是非常麻烦的，我们要尽量去避免</p>
+<hr>
+<h3 id="属性集闭包"><a class="header-anchor" href="#属性集闭包">¶</a>属性集闭包</h3>
+<blockquote>
+<p>令X为一个属性集，我们将函数依赖集F下被X函数确定的所有属性的集合称为F下X的闭包，记作X+</p>
+</blockquote>
+<ul>
+<li><strong>有关系模式R&lt;U，F&gt;，其中U={A，B，C，D，E}，F={AB→C，B→D，C→E，EC→B，AC→B}，求（AB)+</strong></li>
+</ul>
+<p>首先，我们要从AB开始求，所以令X(0) = AB</p>
+<p><strong>第一步</strong>，求X(1)。我们要先列出X(0)的非空子集，即AB的非空子集，很显然为{A，B，AB}。然后扫描F集合，寻找包含有{A，B，AB}的函数依赖，就可以得到：<strong>AB→C，B→D</strong>。我们就可以把C，D合入X(0)中得到X(1)，就可以求得<strong>X(1)=X(0)∪C∪D=ABCD</strong>。如果X(0)等于X(1)就说明继续进行下一步也会得到相同的结果，与离散数学中的传递闭包相似，于是我们可以结束步骤，所求即为答案，如果X(0)不等于X(1)就继续计算。</p>
+<p><strong>第二步</strong>，求X(2)。同第一步求X(1)的非空真子集，然后在F中一次寻找函数依赖，可以得到：<strong>AB→C，B→D，C→E，AC→B</strong>。所以<strong>X(2)=X(1)∪C∪D∪E∪B=ABCDE</strong>。这时候发现X(2)已经等于全部属性集U了，不可能再计算出新的结果，我们就结束计算，得出**(AB)+ =ABCDE。**</p>
+<p>让我们来看一下C++实现求解属性集闭包的代码</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//首先输入F中的函数依赖对数 </span></span><br><span class="line"><span class="comment">//其次输入具体的函数依赖</span></span><br><span class="line"><span class="comment">//输入要求解的属性集X</span></span><br><span class="line"><span class="comment">//输出:X关于F的闭包:X+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*输入示例:</span></span><br><span class="line"><span class="comment">比如F=&#123;A→C,B→C&#125; 求A+</span></span><br><span class="line"><span class="comment">第一步: 2</span></span><br><span class="line"><span class="comment">第二步: A C </span></span><br><span class="line"><span class="comment">       B C</span></span><br><span class="line"><span class="comment">第三步: A</span></span><br><span class="line"><span class="comment">输出: &#123;AC&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">FunctionDependence</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="built_in">string</span> X; </span><br><span class="line">	<span class="built_in">string</span> Y;	</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Init</span> <span class="params">(FunctionDependence FD[],<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//函数依赖关系初始化</span></span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="built_in">string</span> x,y;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;请输入F中的函数依赖（决定因素在左，被决定因素在右）&quot;</span>&lt;&lt;<span class="built_in">endl</span>; </span><br><span class="line">	<span class="comment">//输入函数依赖集合F </span></span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">	&#123;		</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;x&gt;&gt;y;</span><br><span class="line">		FD[i].X=x;</span><br><span class="line">		FD[i].Y=y;	</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;函数依赖集合F：&quot;</span>; </span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;F=&#123;&quot;</span> ;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//显示已知的函数依赖集合F </span></span><br><span class="line"></span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;FD[i].X&lt;&lt;<span class="string">&quot;-&gt;&quot;</span>&lt;&lt;FD[i].Y;</span><br><span class="line">		<span class="keyword">if</span> (i&lt;n<span class="number">-1</span>)<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;, &quot;</span>;	</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;&#125;&quot;</span>&lt;&lt;<span class="built_in">endl</span>; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">IsIn</span><span class="params">(<span class="built_in">string</span> f,<span class="built_in">string</span> zz)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">bool</span> flag1=<span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">int</span> len1=f.length();</span><br><span class="line">	<span class="keyword">int</span> len2=zz.length();</span><br><span class="line">	<span class="keyword">int</span> k=<span class="number">0</span>,t=<span class="number">0</span>,count1=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (k=<span class="number">0</span>;k&lt;len1;k++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (t=<span class="number">0</span>;t&lt;len2;t++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (f[k]==zz[t])</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="comment">//flag1=true;break;</span></span><br><span class="line">				count1++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (count1==len1)</span><br><span class="line">	&#123;</span><br><span class="line">		flag1=<span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> flag1=<span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">return</span> flag1;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">CutAndSort</span><span class="params">(<span class="built_in">string</span> mm)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> size=mm.length();</span><br><span class="line">	<span class="keyword">int</span> kk=<span class="number">0</span>,ii=<span class="number">0</span>;;</span><br><span class="line">	<span class="built_in">string</span> closure;</span><br><span class="line">	<span class="keyword">int</span> a[<span class="number">200</span>]=&#123;<span class="number">0</span>&#125;;<span class="comment">//用来记录各个命题出现的次数</span></span><br><span class="line">	<span class="keyword">for</span>(kk=<span class="number">0</span>;kk&lt;size;kk++) </span><br><span class="line">	&#123;</span><br><span class="line">		a[(<span class="keyword">int</span>)mm[kk]]++;<span class="comment">//强制转换类型，储存各个因素的次数 </span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (ii=<span class="number">0</span>;ii&lt;<span class="number">200</span>;ii++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (a[ii]&gt;=<span class="number">1</span>)<span class="comment">//cout&lt;&lt;(char)ii;</span></span><br><span class="line">		closure+=(<span class="keyword">char</span>)ii;</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">return</span> 	closure;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">X_Fn</span><span class="params">(FunctionDependence FD[],<span class="keyword">int</span> n,<span class="built_in">string</span> &amp;xx)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">string</span> yy=xx;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (IsIn(FD[i].X,yy)==<span class="literal">true</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			xx+=FD[i].Y;</span><br><span class="line">		&#125;		</span><br><span class="line">	&#125;</span><br><span class="line">	yy=CutAndSort(yy);</span><br><span class="line">	xx=CutAndSort(xx);	</span><br><span class="line">	<span class="keyword">if</span> (xx!=yy)</span><br><span class="line">	&#123;</span><br><span class="line">		X_Fn(FD,n,xx);<span class="comment">//递归 </span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> xx; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">FD</span><span class="params">(FunctionDependence FD[],<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//输入 X</span></span><br><span class="line">	<span class="built_in">string</span> xx;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;\n请输入属性集X：&quot;</span>; </span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt; xx;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;\n&quot;</span>&lt;&lt;xx&lt;&lt;<span class="string">&quot;关于F的闭包：&#123;&quot;</span>;</span><br><span class="line">	<span class="comment">//求X关于F的闭包</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;X_Fn(FD,n,xx);</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;&#125;\n&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> N;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;请输入F中函数依赖的组数:&quot;</span>; </span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;N;</span><br><span class="line">	</span><br><span class="line">	FunctionDependence fd[N];</span><br><span class="line">	Init(fd,N);	</span><br><span class="line">	FD(fd,N);</span><br><span class="line">	FD(fd,N);</span><br><span class="line">	FD(fd,N);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<h3 id="属性集闭包用途"><a class="header-anchor" href="#属性集闭包用途">¶</a>属性集闭包用途</h3>
+<ul>
+<li>判断X是否为超码，如果X+包含了R中的所有属性，就说明X是超码</li>
+<li>用来判断X→Y，如果Y属于X+，则X→Y成立</li>
+<li>计算F+，我们通过计算所有属性的闭包，然后根据闭包得到函数依赖，把所有得到的函数依赖合在一起，就是F+</li>
+</ul>
+<p><strong>例题：R{A,B,C,D}，D→A，C→A，C→D，B→C<br>
+请问候选码是？是否属于BC范式？</strong></p>
+<blockquote>
+<p>(1)首先我们求解A+，B+，C+，D+</p>
+<p>使用上面的C++代码会很方便，这里我直接给出结果</p>
+<p>A+ = {A}，B+ = {ABCD}，C+ = {ACD}，D+ = {AD}</p>
+<p>很明显，B是最小超码，即为候选码</p>
+<p>(2)D→A既不满足<strong>D是超码</strong>，也不满足<strong>D包含A</strong>，所以R不满足BCNF</p>
+</blockquote>
 <hr>
 <h2 id="结语"><a class="header-anchor" href="#结语">¶</a>结语</h2>
 <p>本文主要参照《数据库系统概念》这本书，文中很多例子都出自此书，借着写博客的机会，把这本书的第八章又看了一遍。写完文章，看着电脑里面4个G的无声录屏，真是太尴尬了🌝，哈哈哈哈哈哈哈。</p>
